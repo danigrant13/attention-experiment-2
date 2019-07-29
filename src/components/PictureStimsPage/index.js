@@ -1,9 +1,12 @@
 import React from "react";
 
 import imageStims from "../../data/imageStims";
-import { sampleWithoutReplacement } from "../../utils/random";
+import { coinFlip, sampleWithoutReplacement, shuffle } from "../../utils/random";
+import reducer, { genInitialValues, setSelection } from "./store";
 
+import {DataContext, setTrustRow} from "../../App";
 import DisplayDirection from "./DisplayDirection";
+import ExitQuestions from "./ExitQuestions";
 import LetterStim from "./LetterStim";
 import TrustQuestion from "./TrustQuestion";
 
@@ -17,13 +20,13 @@ const lettersNoX = [
 
 const randomLetters = () => {
   let xToAdd = [];
-  let withXLetters = lettersNoX.slice(0);
+  let withXLetters = shuffle(lettersNoX);
   if (Math.random() <= 0.2) {
-      xToAdd = sampleWithoutReplacement([['X'], ['X', 'X']], 1);
+      xToAdd = sampleWithoutReplacement([['X'], ['X', 'X']], 1)[0];
   }
+  withXLetters = sampleWithoutReplacement(withXLetters, 20);
   xToAdd.forEach(function() { withXLetters.shift() });
-  withXLetters = withXLetters.concat(xToAdd);
-  return sampleWithoutReplacement(withXLetters, 25);
+  return shuffle(withXLetters.concat(xToAdd));
 };
 
 const PAGES = [];
@@ -34,15 +37,14 @@ for (let i = 0; i < 6; i++) {
   })
 }
 
-console.log(PAGES);
-
 const NUM_PAGES = PAGES.length
 
 const PictureStimsPage = ({history, match: { params: { page } } }) => {
   const pageIndex = parseInt(page);
   const currentPage = PAGES[pageIndex];
 
-  const letterPosition = React.useRef(Math.random() < 0.5 ? "<" : ">");
+  const letterPosition = React.useRef(coinFlip() ? "<" : ">");
+  const [trustState, trustDispatch] = React.useReducer(reducer, genInitialValues(currentPage));
   const [currentState, setCurrentState] = React.useState("direction");
   const stepTo = (to) => () => {
     setCurrentState(to);
@@ -63,10 +65,29 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
       return (
         <TrustQuestion
           currentPage={currentPage}
-          pageIndex={page}
-          totalPages={NUM_PAGES}
-          history={history}
+          handleSubmit={({choice, selectionTime}) => {
+            trustDispatch(setSelection(choice, selectionTime));
+            stepTo('exit-questions')();
+          }}
         />
+      );
+    case "exit-questions":
+      return (
+        <DataContext.Consumer>
+          {({dispatch}) => (
+            <ExitQuestions
+              dispatch={trustDispatch}
+              handleSubmit={() => {
+                dispatch(setTrustRow(trustState));
+                if (pageIndex === NUM_PAGES - 1) {
+                  history.replace('/');
+                } else {
+                  history.replace(`/trust-games/${pageIndex + 1}`);
+                }
+              }}
+            />
+          )}
+        </DataContext.Consumer>
       );
     default:
       return <div />;

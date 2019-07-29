@@ -17,7 +17,9 @@ const useLetterTimer = (letters) => {
   };
 
   useEffect(() => {
-    letterTimeout(letter);
+    if (letter.letter != null) {
+      letterTimeout(letter);
+    }
   }, [letter]); // eslint-disable-line
 
   return letter.letter

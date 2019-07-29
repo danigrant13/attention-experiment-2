@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
+import {pathOr} from "ramda";
 
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
@@ -14,15 +15,43 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <Switch>
-      <Route exact path="/" component={WelcomePage} />
-      <Route path="/instructions/:page" component={InstructionsPage} />
-      <Route path="/trust-games/:page" component={PictureStimsPage} />
-    </Switch>
-  </>
-);
+export const DataContext = React.createContext(null);
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'demographics':
+      return { ...state, demographics: action.demographics }
+    case 'trust-row': 
+      return { ...state, trustData: [...state.trustData, action.trustRow] };
+    default:
+      return state;
+  }
+};
+
+const initialValues = {
+  trustData: [],
+};
+
+export const setTrustRow = (trustRow) => ({
+  type: 'trust-row',
+  trustRow,
+});
+
+const App = () => {
+  const [state, dispatch] = React.useReducer(reducer, initialValues);
+
+  return (
+    <DataContext.Provider value={{ state, dispatch }}>
+      <GlobalStyle />
+      <Switch>
+        <Route exact path="/" component={WelcomePage} />
+        <Route path="/instructions/:page" component={InstructionsPage} />
+        <Route path="/trust-games/:page" render={(props) => (
+          <PictureStimsPage key={pathOr(null, ["match", "params", "page"], props)} {...props} />
+        )} />
+      </Switch>
+    </DataContext.Provider>
+  );
+};
 
 export default App;

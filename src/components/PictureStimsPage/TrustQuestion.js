@@ -5,18 +5,14 @@ import { elapsedTime } from "../../utils/date";
 
 import PictureStim from "../ui/PictureStim";
 
-const TrustQuestion = ({ currentPage, history, pageIndex, totalPages }) => {
+const TrustQuestion = ({ currentPage, handleSubmit }) => {
   const startRef = React.useRef(new Date());
-  const intPageIndex = parseInt(pageIndex);
 
   useKeyPress(["ArrowLeft", "ArrowRight"], (key) => {
-    elapsedTime(startRef.current, new Date());
+    const selectionTime = elapsedTime(startRef.current, new Date());
+    const choice = key === "ArrowLeft" ? currentPage.images[0] : currentPage.images[1];
 
-    if (intPageIndex === totalPages - 1) {
-      history.replace('/');
-    } else {
-      history.replace(`/trust-games/${intPageIndex + 1}`);
-    }
+    handleSubmit({ choice, selectionTime});
   });
 
   return (

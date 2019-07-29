@@ -8,20 +8,22 @@ import PictureStim from "../ui/PictureStim";
 
 const LetterStim = ({currentPage, letterPosition, onStep}) => {
   const letter = useLetterTimer(currentPage.letters);
-  const showImages = useAfterTimeout(1000);
+  const showImages = useAfterTimeout(2000);
+  const timeout = React.useRef(null);
 
   React.useEffect(() => {
     if (isMissing(letter)) {
-      onStep();
+      timeout.current = setTimeout(onStep, 1000);
     }
   }, [letter]) // eslint-disable-line
 
+  const showLetter = isPresent(letter);
   return (
     <PictureStim
       images={currentPage.images}
-      letter={isPresent(letter) && letter}
+      letter={showLetter ? letter : "#"}
       letterPosition={letterPosition}
-      showLetter={isPresent(letter)}
+      showLetter={showLetter}
       showImages={showImages}
     />
   )
