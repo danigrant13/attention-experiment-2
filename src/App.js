@@ -6,6 +6,7 @@ import {pathOr} from "ramda";
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
 import PictureStimsPage from "./components/PictureStimsPage";
+import EndingScreen from "./components/EndingScreen";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/trust-games/:page" render={(props) => (
           <PictureStimsPage key={pathOr(null, ["match", "params", "page"], props)} {...props} />
         )} />
+        <Route exact path="/thank-you" component={EndingScreen} />
       </Switch>
     </DataContext.Provider>
   );

@@ -80,7 +80,7 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
               handleSubmit={() => {
                 dispatch(setTrustRow(trustState));
                 if (pageIndex === NUM_PAGES - 1) {
-                  history.replace('/');
+                  history.replace('/thank-you');
                 } else {
                   history.replace(`/trust-games/${pageIndex + 1}`);
                 }
