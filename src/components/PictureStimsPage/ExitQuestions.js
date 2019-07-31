@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Page from "../ui/Page";
 
-import {isMissing} from "../../utils/presence";
+import {isMissing, isPresent} from "../../utils/presence";
 import { setExitQuestions } from "./store";
 
 const Wrapper = styled.div`
@@ -47,13 +47,23 @@ const Form = styled.form`
 
 const ExitQuestions = ({ currentPage, dispatch, handleSubmit }) => {
   const [numXs, setNumXs] = React.useState(null);
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (isPresent(inputRef.current)) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
 
   return (
     <Page>
       <Wrapper>
-        <p>How many times did an X appear?</p>
+        <p>
+            How many times did an X appear? <br/>
+            Type a number between 0 and 9
+        </p>
         <Form onSubmit={handleSubmit}>
-          <Input type="number" min="0" max="9" onChange={e => {
+          <Input ref={inputRef} type="number" min="0" max="9" onChange={e => {
             setNumXs(e.target.value);
             dispatch(setExitQuestions(e.target.value));
           }} />

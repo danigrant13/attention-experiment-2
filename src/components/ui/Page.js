@@ -23,10 +23,10 @@ const Body = styled.div`
 
 const Prompt = styled.p`
   position: absolute;
-  top: 93vh;
+  top: 80vh;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 18px;
+  font-size: 24px;
 `;
 
 const Page = ({ children, prompt }) => (

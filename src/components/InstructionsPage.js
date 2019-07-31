@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import {is} from "ramda";
 
+import INSTRUCTIONS from "../data/instructions";
 import useKeyPress from "../hooks/useKeyPress";
+import { isPresent } from "../utils/presence";
 
 import Instructions from "./ui/Instructions";
-import INSTRUCTIONS from "../data/instructions";
 
 const NUM_INSTRUCTIONS = INSTRUCTIONS.length - 1;
 
@@ -12,6 +14,34 @@ const P = styled.p`
   font-size: 24px;
   max-width: 1000px;
 `;
+
+const ImagesWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > *:not(:last-child) {
+    margin-right: 15px;
+  }
+`;
+
+const img = styled.img`
+  width: 500px;
+  height: 375px;
+`;
+
+const isString = is(String);
+
+const renderTextItem = textItems => textItems.map(
+  (item, i) =>
+    isString(item)
+      ? item
+      : React.createElement(item.component, {key: i}, [item.text])
+);
+
+const renderTextInstruction = (instruction) => isString(instruction)
+  ? instruction
+  : renderTextItem(instruction.textItems);
 
 const InstructionsPage = ({ history, match: { params: {page} } }) => {
   const intPage = parseInt(page);
@@ -26,11 +56,18 @@ const InstructionsPage = ({ history, match: { params: {page} } }) => {
 
   const currentPage = INSTRUCTIONS[page];
 
-  return (
-    <Instructions prompt={currentPage.prompt}>
-      {currentPage.items.map((instruction, i) => <P key={i}>{instruction}</P>)}
-    </Instructions>
-  );
+  return isPresent(currentPage.images) ? (
+      <Instructions prompt={currentPage.prompt}>
+          {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, i)}</P>)}
+        <ImagesWrapper>
+          {currentPage.images.map((image, i) => <img key={i} alt={`img ${i}`} src={image} />)}
+        </ImagesWrapper>
+      </Instructions>
+    ) : (
+      <Instructions prompt={currentPage.prompt}>
+        {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, i)}</P>)}
+      </Instructions>
+    );
 };
 
 export default InstructionsPage;

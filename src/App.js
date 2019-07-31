@@ -9,9 +9,11 @@ import PictureStimsPage from "./components/PictureStimsPage";
 
 const GlobalStyle = createGlobalStyle`
   body {
-      background-color: #808080;
-      color: #fff;
-      text-align: center;
+    background-color: #808080;
+    color: #fff;
+    text-align: center;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-size: 18px;
   }
 `;
 

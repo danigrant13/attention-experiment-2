@@ -22,7 +22,11 @@ const TrustQuestion = ({ currentPage, handleSubmit }) => {
       letterPosition="<"
       showLetter={false}
       showImages={true}
-      prompt={"Which person do you choose to donate $1.00 to?"}
+      prompt={[
+        "Which participant do you choose to trust your $1.00 with?",
+        <br />,
+        "Use the left arrow to choose the left participant and the right arrow to choose the right."
+      ]}
     />
   )
 };
