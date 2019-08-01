@@ -40,7 +40,7 @@ export default [
   }, {
     items: [
       "Before each search task, you will be oriented to the side of the screen letters will be displayed.",
-      "When letters will be displayed on the right side, you will see a right-pointing arrow, \">\". When the letters will be displayed on the left side, you will see a left-pointing arrow, \"<\". (see example below).",
+      "When letters will be displayed on the right side, you will see a right-pointing arrow, \">\". When the letters will be displayed on the left side, you will see a left-pointing arrow, \"<\" (see example below).",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:" }] },
     ],
     images: [DemoImage1],
@@ -68,7 +68,7 @@ export default [
     prompt: "Press ENTER to continue the search task description",
   }, {
     items: [
-      "After the search task, you will be asked a few questions about what you saw and then move on to the second task, the deicison task.",
+      "After the search task, you will be asked a few questions about what you saw and then move on to the second task, the decision task.",
       { textItems: [{ component: "strong", text: "The basic layout of the screen will look like this:" }] }
     ],
     images: [DemoImage3],

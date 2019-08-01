@@ -1,9 +1,14 @@
 import React from "react";
 import {withRouter} from "react-router-dom";
+import styled from "styled-components";
 
 import useKeyPress from "../hooks/useKeyPress";
 
 import Instructions from "./ui/Instructions";
+
+const P = styled.p`
+  font-size: 32px;
+`;
 
 const Welcome = ({history}) => {
   useKeyPress([], () => {
@@ -12,7 +17,7 @@ const Welcome = ({history}) => {
 
   return (
     <Instructions prompt="Press any key to continue">
-      <p>Welcome to the Experiment!</p>
+      <P>Welcome to the Experiment!</P>
     </Instructions>
   )
 };
