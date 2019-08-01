@@ -5,7 +5,9 @@ import {pathOr} from "ramda";
 
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
+import ManipulationCheck from "./components/ManipulationCheck";
 import PictureStimsPage from "./components/PictureStimsPage";
+import PracticeIntro from "./components/PracticeIntro";
 import EndingScreen from "./components/EndingScreen";
 
 const GlobalStyle = createGlobalStyle`
@@ -15,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
     font-family: 'Open Sans', 'Arial', sans-serif;
     font-size: 18px;
+  }
+
+  p {
+    font-size: 24px;
   }
 `;
 
@@ -49,6 +55,8 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={WelcomePage} />
         <Route path="/instructions/:page" component={InstructionsPage} />
+        <Route path="/manipulation-check" component={ManipulationCheck} />
+        <Route path="/practice-intro" component={PracticeIntro} />
         <Route path="/trust-games/:page" render={(props) => (
           <PictureStimsPage key={pathOr(null, ["match", "params", "page"], props)} {...props} />
         )} />

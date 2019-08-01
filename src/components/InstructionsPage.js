@@ -48,7 +48,7 @@ const InstructionsPage = ({ history, match: { params: {page} } }) => {
 
   useKeyPress(["Enter"], () => {
     if (intPage === NUM_INSTRUCTIONS) {
-      history.replace("/trust-games/0");
+      history.replace("/manipulation-check");
     } else {
       history.replace(`/instructions/${intPage + 1}`)
     }
