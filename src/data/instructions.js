@@ -40,7 +40,7 @@ export default [
   }, {
     items: [
       "Before each search task, you will be oriented to the side of the screen letters will be displayed.",
-      "When letters will be displayed on the right side, you will see a right-pointing arrow, \">\". When the letters will be displayed on the left side, you will see a left-pointing arrow, \"<\" (see example below).",
+      "When letters will be displayed on the right side, you will see a right-pointing arrow, \">\". When the letters will be displayed on the left side, you will see a left-pointing arrow, \"<\".",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:" }] },
     ],
     images: [DemoImage1],
@@ -51,33 +51,33 @@ export default [
       {textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     images: [DemoLetters],
-    prompt: "Press ENTER to continue the search task description",
+    prompt: "Press ENTER to continue the search task description.",
   }, {
     items: [
       "A few seconds later, the University of Colorado participants will appear side-by-side below the cycling letters.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     images: [DemoImage2],
-    prompt: "Press ENTER to continue the search task description",
+    prompt: "Press ENTER to continue the search task description.",
   }, {
     items: [
-      "During this task, your goal is to read the letters as they appear and to press the SPACE key if any \"X\" appears in the letter sequence. If no \"X\" appears, do not press any button. Some letter sequences will have one or more \"X\". Others will contain no \"X\".",
+      "During this task, your goal is to read the letters as they appear and track how many “X” letters appears in the sequence. Some sequences will have no “X” appear, while others will contain one or more “X” letters.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     images: [DemoImage2],
-    prompt: "Press ENTER to continue the search task description",
+    prompt: "Press ENTER to continue the search task description.",
   }, {
     items: [
-      "After the search task, you will be asked a few questions about what you saw and then move on to the second task, the decision task.",
+      "After the search task, you will be asked a few questions and then move on to the decision task. One will be how many “X” letters you saw. For each trial you correctly answer the number of “X” letters you will receive and additional $.05.",
       { textItems: [{ component: "strong", text: "The basic layout of the screen will look like this:" }] }
     ],
     images: [DemoImage3],
     prompt: defaultPrompt,
   }, {
     items: [
-      "Let's first begin by describing the decision task."
+      "Now, let’s begin describing the decision task."
     ],
-    prompt: "Press ENTER to continue on to the decision task description",
+    prompt: "Press ENTER to continue on to the decision task description.",
   }, {
     items: [
       {
@@ -99,13 +99,13 @@ export default [
       },
     ],
     images: [DemoA],
-    prompt: "Press ENTER to continue with the decision task description",
+    prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [
       {textItems: [{ component: "strong", text: "First Mover Role:" }]},
       {
         textItems: [
-          "You will then be ask to choose which of the other two participants you would like to trust with you $1.00. The participant you choose will be assigned to the role of ",
+          "You will then be ask to choose which of the other two participants you would like to trust with your $1.00. The participant you choose will be assigned to the role of ",
           { component: "strong", text: "Second Mover" },
           ". The money will be multiplied by 4 and placed in the ",
           { component: "strong", text: "Second Mover" },
@@ -117,7 +117,7 @@ export default [
       },
       {
         textItems: [
-          "The basic layout of the screen will look like this:",
+          { component: "strong", text: "The basic layout of the screen will look like this:" },
         ]
       }
     ],
@@ -150,11 +150,11 @@ export default [
       {textItems: [{ component: "strong", text: "Second Mover Role:" }]},
       {
         textItems: [
-          "Once you, ",
+          "Once you, the ",
           { component: "strong", text: "First Mover" },
           ", has made you choice during the decision task, the ",
           { component: "strong", text: "Second Mover" },
-          " will later return to the lab to take part in the first, and last, portion of the experiment.",
+          " will later return to the lab to take part in the third, and last, portion of the experiment.",
         ]
       },
       {
@@ -242,14 +242,25 @@ export default [
           { component: "strong", text: "Second Mover" },
           ", the participant you chose, would also have $2.50.",
         ]
-      },
-      {
-        textItems: [
-          {component: "strong", text: "The basic screen layout Second Mover will see looks like this:" },
-        ]
       }
     ],
     images: [DemoG],
     prompt: defaultPrompt,
-  },
+  }, {
+    items: [
+      "Now, you are familiar with the 2 tasks involved in each trial. During this study, you will first take part in 3 practice trials that will orient you to the procedures. Then you will take park in 25 experimental trials."
+    ],
+    prompt: defaultPrompt
+  }, {
+    items: [
+      "Keep in mind that this means that you will be choosing 25 other participants to become Second Movers (because there are 25 trials). Many other anonymous online participants will also take part in 25 trials and be randomly assigned to two University of Colorado participants each trial.",
+      "When the University of Colorado participants, or Second Movers, return to the lab they will be presented with all the online anonymous participants who chose them to be Second Mover during individual trials. So, each Second Mover may take part in many trials as Second Mover. In other words, the Second Mover will be given the opportunity to return the amount of their choosing for each individual trial in which they were chosen to be Second Mover."
+    ],
+    prompt: defaultPrompt
+  }, {
+    items: [
+      "Before moving on to the practice trials, we would like you to answer two comprehension questions."
+    ],
+    prompt: defaultPrompt
+  }
 ];

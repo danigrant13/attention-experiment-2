@@ -8,11 +8,11 @@ import Page from "./Page";
 
 const Images = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 100%;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")}
 
   & > *:not(last-child) {
-    margin-right: 15px;
   }
 `;
 
@@ -23,8 +23,8 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  width: 500px;
-  height: 375px;
+  width: 375px;
+  height: 280px;
 `;
 
 const Letter = styled.p`

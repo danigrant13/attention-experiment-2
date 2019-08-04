@@ -21,7 +21,7 @@ const Question1 = ({ onIncorrect, onComplete, showRemainingChances }) => {
   const [answer, setAnswer] = React.useState(null);
 
   React.useEffect(() => {
-    if (answer === "3") {
+    if (answer === "4") {
       onComplete();
     } else if (isPresent(answer)) {
       onIncorrect();
@@ -32,7 +32,7 @@ const Question1 = ({ onIncorrect, onComplete, showRemainingChances }) => {
   return (
     <Page>
       <P>
-        If the FirstMover chooses to trust the SecondMover with $1.00, how much
+        If the First Mover chooses to trust the Second Mover with $1.00, how much
         will this amount be multiplied by before being placed in the Second Mover's
         account?
       </P>

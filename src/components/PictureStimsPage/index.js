@@ -7,6 +7,7 @@ import reducer, { genInitialValues, setSelection } from "./store";
 import {DataContext, setTrustRow} from "../../App";
 import DisplayDirection from "./DisplayDirection";
 import ExitQuestions from "./ExitQuestions";
+import Feedback from "./Feedback";
 import LetterStim from "./LetterStim";
 import TrustQuestion from "./TrustQuestion";
 
@@ -30,7 +31,7 @@ const randomLetters = () => {
 };
 
 const PAGES = [];
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < 28; i++) {
   PAGES.push({
     images: imageStims.getSample(),
     letters: randomLetters(),
@@ -77,17 +78,29 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
           {({dispatch}) => (
             <ExitQuestions
               dispatch={trustDispatch}
+              currentPage={currentPage}
               handleSubmit={() => {
                 dispatch(setTrustRow(trustState));
-                if (pageIndex === NUM_PAGES - 1) {
-                  history.replace('/thank-you');
-                } else {
-                  history.replace(`/trust-games/${pageIndex + 1}`);
-                }
+                stepTo('feedback')()
               }}
             />
           )}
         </DataContext.Consumer>
+      );
+    case "feedback":
+      return (
+        <Feedback
+          currentPage={currentPage}
+          page={pageIndex}
+          trustState={trustState}
+          handleSubmit={() => {
+            if (pageIndex === NUM_PAGES - 1) {
+              history.replace('/thank-you');
+            } else {
+              history.replace(`/trust-games/${pageIndex + 1}`);
+            }
+          }}
+        />
       );
     default:
       return <div />;

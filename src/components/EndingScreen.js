@@ -20,10 +20,15 @@ const EndingScreen = () => {
   }, [dataObject]);
 
   return (
-    <Instructions>
-      <P>Thank you for participating in the study</P>
+    <Instructions prompt="Press ENTER to continue.">
+      <P>Thank you for taking part in the experiment!</P>
+      <P>On the next page you will receive your code for MTurk participation payment.</P>
+      <P>
+        Once we have finished running participants, you will be awarded your&nbsp;
+        performance based fee for the search task.
+      </P>
     </Instructions>
-  )
+  );
 };
 
 export default EndingScreen;

@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 
 const Body = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -23,7 +24,7 @@ const Body = styled.div`
 
 const Prompt = styled.p`
   position: absolute;
-  top: 80vh;
+  top: 83vh;
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;

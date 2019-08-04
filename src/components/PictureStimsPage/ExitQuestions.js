@@ -39,7 +39,7 @@ const Button = styled.button`
   }
 `;
 
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,12 +62,12 @@ const ExitQuestions = ({ currentPage, dispatch, handleSubmit }) => {
             How many times did an X appear? <br/>
             Type a number between 0 and 9
         </p>
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Input ref={inputRef} type="number" min="0" max="9" onChange={e => {
             setNumXs(e.target.value);
             dispatch(setExitQuestions(e.target.value));
           }} />
-          <Button disabled={isMissing(numXs)} type="submit">Submit</Button>
+          <Button onClick={handleSubmit} disabled={isMissing(numXs)}>Submit</Button>
         </Form>
       </Wrapper>
     </Page>
