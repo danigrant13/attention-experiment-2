@@ -13,6 +13,7 @@ const NUM_INSTRUCTIONS = INSTRUCTIONS.length - 1;
 const P = styled.p`
   font-size: 24px;
   max-width: 1000px;
+  margin: 15px 0px;
 `;
 
 const ImagesWrapper = styled.div`

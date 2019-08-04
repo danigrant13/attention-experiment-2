@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const P = styled.p`
-  font-size: 24px;
+  max-width: 1000px;
 `;
 
 export const Select = styled.select`

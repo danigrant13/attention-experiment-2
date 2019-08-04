@@ -1,21 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-
 import Page from "../ui/Page";
 
 import { isPresent } from "../../utils/presence";
 
-const P = styled.p`
-  font-size: 24px;
-  max-width: 1000px;
-`;
-
-const Select = styled.select`
-  height: 35px;
-  border-radius: 0;
-  margin-right: 15px;
-  width: 150px;
-`;
+import {P, Select} from "./ui";
 
 const Question1 = ({ onIncorrect, onComplete, showRemainingChances }) => {
   const [answer, setAnswer] = React.useState(null);
