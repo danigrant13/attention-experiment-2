@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
 import {pathOr} from "ramda";
 
+import ExperimentIntro from "./components/ExperimentIntro";
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
 import ManipulationCheck from "./components/ManipulationCheck";
@@ -57,6 +58,7 @@ const App = () => {
         <Route exact path="/" component={WelcomePage} />
         <Route path="/instructions/:page" component={InstructionsPage} />
         <Route path="/manipulation-check" component={ManipulationCheck} />
+        <Route path="/experiment-intro" component={ExperimentIntro} />
         <Route path="/practice-intro" component={PracticeIntro} />
         <Route path="/trust-games/:page" render={(props) => (
           <PictureStimsPage key={pathOr(null, ["match", "params", "page"], props)} {...props} />

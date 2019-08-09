@@ -96,6 +96,8 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
           handleSubmit={() => {
             if (pageIndex === NUM_PAGES - 1) {
               history.replace('/thank-you');
+            } else if (pageIndex === 2) {
+              history.replace('/experiment-intro');
             } else {
               history.replace(`/trust-games/${pageIndex + 1}`);
             }
