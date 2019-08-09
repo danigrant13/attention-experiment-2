@@ -2,6 +2,7 @@
   "name": "dani-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "jspsych": "^6.0.0",
     "ramda": "^0.26.1",

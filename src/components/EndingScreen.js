@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import useKeyPress from "../hooks/useKeyPress";
 import { isPresent } from "../utils/presence";
-import DataContext from "../App";
+import { DataContext } from "../App";
 
 import Instructions from "./ui/Instructions";
 
@@ -11,13 +12,19 @@ const P = styled.p`
   max-width: 1000px;
 `;
 
-const EndingScreen = () => {
-  const dataObject = React.useContext(DataContext);
+const EndingScreen = ({ data }) => {
   React.useEffect(() => {
-    if (isPresent(window.jatos)) {
-      window.jatos.submitResultData(JSON.stringify(dataObject), window.jatos.endStudy);
+    if (isPresent(data)) {
+      console.log("Submitting ", data);
+      window.jatos.submitResultData(JSON.stringify(data));
     }
-  }, [dataObject]);
+  }, [data]);
+  useKeyPress(["Enter"], () => {
+    if (isPresent(window.jatos)) {
+      console.log("Ending Study");
+      window.jatos.endStudy();
+    }
+  });
 
   return (
     <Instructions prompt="Press ENTER to continue.">
@@ -31,4 +38,10 @@ const EndingScreen = () => {
   );
 };
 
-export default EndingScreen;
+export default () => (
+  <DataContext.Consumer>
+    {({ state }) => (
+      <EndingScreen data={state} />
+    )}
+  </DataContext.Consumer>
+);
