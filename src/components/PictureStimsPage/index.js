@@ -31,10 +31,11 @@ const randomLetters = () => {
 };
 
 const PAGES = [];
-for (let i = 0; i < 28; i++) {
+for (let i = 0; i < 6; i++) {
   PAGES.push({
     images: imageStims.getSample(),
     letters: randomLetters(),
+    letterPosition: (coinFlip() ? "<" : ">"),
   })
 }
 
@@ -44,7 +45,6 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
   const pageIndex = parseInt(page);
   const currentPage = PAGES[pageIndex];
 
-  const letterPosition = React.useRef(coinFlip() ? "<" : ">");
   const [trustState, trustDispatch] = React.useReducer(reducer, genInitialValues(currentPage));
   const [currentState, setCurrentState] = React.useState("direction");
   const stepTo = (to) => () => {
@@ -53,12 +53,12 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
 
   switch(currentState) {
     case "direction":
-      return <DisplayDirection letterPosition={letterPosition.current} onStep={stepTo("letters")} />;
+      return <DisplayDirection letterPosition={currentPage.letterPosition} onStep={stepTo("letters")} />;
     case "letters":
       return (
         <LetterStim
           currentPage={currentPage}
-          letterPosition={letterPosition.current}
+          letterPosition={currentPage.letterPosition}
           onStep={stepTo("trust")}
         />
       )

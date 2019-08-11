@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import useKeyPress from "../hooks/useKeyPress";
 import { isPresent } from "../utils/presence";
+import saveData from "../utils/save-data";
 import { DataContext } from "../App";
 
 import Instructions from "./ui/Instructions";
@@ -14,9 +15,9 @@ const P = styled.p`
 
 const EndingScreen = ({ data }) => {
   React.useEffect(() => {
-    if (isPresent(data)) {
+    if (isPresent(window.jatos) && isPresent(data)) {
       console.log("Submitting ", data);
-      window.jatos.submitResultData(JSON.stringify(data));
+      window.jatos.submitResultData(saveData(data));
     }
   }, [data]);
   useKeyPress(["Enter"], () => {

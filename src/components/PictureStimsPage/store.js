@@ -7,7 +7,8 @@ const getNumXs = pipe(
 
 export const genInitialValues = (page) => ({
   choices: page.images,
-  actualNumXs: getNumXs(page.letters)
+  actualNumXs: getNumXs(page.letters),
+  letterPosition: page.letterPosition
 });
 
 export const setSelection = (image, decisionTime) => ({
