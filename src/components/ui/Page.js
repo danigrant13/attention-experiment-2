@@ -5,7 +5,7 @@ import {isPresent} from "../../utils/presence";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +24,7 @@ const Body = styled.div`
 
 const Prompt = styled.p`
   position: absolute;
-  top: 83vh;
+  top: 80vh;
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
