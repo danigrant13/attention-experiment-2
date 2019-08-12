@@ -31,7 +31,7 @@ const randomLetters = () => {
 };
 
 const PAGES = [];
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < 28; i++) {
   PAGES.push({
     images: imageStims.getSample(),
     letters: randomLetters(),
@@ -95,7 +95,7 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
           trustState={trustState}
           handleSubmit={() => {
             if (pageIndex === NUM_PAGES - 1) {
-              history.replace('/thank-you');
+              history.replace('/demographics/0');
             } else if (pageIndex === 2) {
               history.replace('/experiment-intro');
             } else {

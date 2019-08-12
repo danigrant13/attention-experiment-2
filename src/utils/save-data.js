@@ -16,7 +16,7 @@ const headers = pipe(
   map((index) => map(val => val + index, csvKeys)),
   flatten,
   join(',')
-)();
+)() + ',' + range(1, 16).map(num => "Q" + num);
 
 const trustItemToRow = trustItem => ([
   trustItem.actualNumXs,
@@ -36,4 +36,5 @@ const trustJSONtoRows = pipe(
 )
 
 
-export default ({ trustData }) => `${headers}\n${trustJSONtoRows(trustData)}`;
+export default ({ trustData, demographics }) =>
+  `${headers}\n${trustJSONtoRows(trustData)},${demographics.join(',')}`;

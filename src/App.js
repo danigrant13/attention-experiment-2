@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
 import {pathOr} from "ramda";
 
+import DemographicSurvey from "./components/DemographicSurvey";
 import ExperimentIntro from "./components/ExperimentIntro";
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
@@ -31,7 +32,7 @@ export const DataContext = React.createContext(null);
 const reducer = (state, action) => {
   switch (action.type) {
     case 'demographics':
-      return { ...state, demographics: action.demographics }
+      return { ...state, demographics: [...state.demographics, action.answer]  }
     case 'trust-row': 
       return { ...state, trustData: [...state.trustData, action.trustRow] };
     default:
@@ -41,12 +42,18 @@ const reducer = (state, action) => {
 
 const initialValues = {
   trustData: [],
+  demographics: []
 };
 
 export const setTrustRow = (trustRow) => ({
   type: 'trust-row',
   trustRow,
 });
+
+export const setDemographicQuestion = (answer, questionNumber) => ({
+  type: "demographics",
+  answer,
+})
 
 const App = () => {
   const [state, dispatch] = React.useReducer(reducer, initialValues);
@@ -57,6 +64,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={WelcomePage} />
         <Route path="/instructions/:page" component={InstructionsPage} />
+        <Route path="/demographics/:page" component={DemographicSurvey} />
         <Route path="/manipulation-check" component={ManipulationCheck} />
         <Route path="/experiment-intro" component={ExperimentIntro} />
         <Route path="/practice-intro" component={PracticeIntro} />

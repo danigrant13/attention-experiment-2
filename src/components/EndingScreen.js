@@ -14,6 +14,7 @@ const P = styled.p`
 `;
 
 const EndingScreen = ({ data }) => {
+  data && console.log(saveData(data));
   React.useEffect(() => {
     if (isPresent(window.jatos) && isPresent(data)) {
       console.log("Submitting ", data);
