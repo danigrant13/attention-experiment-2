@@ -26,9 +26,8 @@ const ImagesWrapper = styled.div`
   }
 `;
 
-const img = styled.img`
-  width: 500px;
-  height: 375px;
+const Image = styled.img`
+  width: 475px;
 `;
 
 const isString = is(String);
@@ -61,7 +60,7 @@ const InstructionsPage = ({ history, match: { params: {page} } }) => {
       <Instructions prompt={currentPage.prompt}>
           {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, i)}</P>)}
         <ImagesWrapper>
-          {currentPage.images.map((image, i) => <img key={i} alt={`img ${i}`} src={image} />)}
+          {currentPage.images.map((image, i) => <Image key={i} alt={`img ${i}`} src={image} />)}
         </ImagesWrapper>
       </Instructions>
     ) : (
