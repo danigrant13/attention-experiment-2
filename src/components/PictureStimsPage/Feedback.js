@@ -25,12 +25,14 @@ const isCorrect = (currentPage, trustState) =>
 const getSummary = (currentPage, pageIndex) => {
   const numXs = getNumXs(currentPage);
   const isPlural = numXs !== 1;
+  const isExperimental = pageIndex > 2;
+
   return (
     <P>
-        During trial {pageIndex + 1} there&nbsp;
-        {isPlural ? "were" : "was"}&nbsp;
-        {getNumXs(currentPage)}&nbsp;
-        "X"{isPlural ? "s" : ""} that cycled through
+      During {isExperimental ? "" : "practice "}trial {isExperimental ? pageIndex - 2 : pageIndex + 1} there&nbsp;
+      {isPlural ? "were" : "was"}&nbsp;
+      {getNumXs(currentPage)}&nbsp;
+      "X"{isPlural ? "s" : ""} that cycled through
     </P>
   )
 }
