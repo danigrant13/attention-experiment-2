@@ -32,8 +32,9 @@ const Image = styled.img`
 
 const FullPageImage = styled.img`
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   padding: -1px -1px -1px -1px;
+  border: 2px solid #000;
 `;
 
 const isString = is(String);

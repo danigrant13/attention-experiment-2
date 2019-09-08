@@ -1,5 +1,4 @@
 import DemoImage1 from "../assets/demo_image_1.png";
-import DemoImage3 from "../assets/demo_image_3.jpg";
 import DemoA from "../assets/demo_a.jpg";
 import DemoB from "../assets/demo_b.jpg";
 import DemoC from "../assets/demo_c.jpg";
@@ -19,6 +18,7 @@ export default [[
       `Last semester during phase one, CU Boulder students came into the lab and we took their photos. You will see their photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
       `On the next slide there is a diagram for you to review.`
     ],
+    timeout: 10000,
     prompt: "Press ENTER to continue on to the instructions."
   }, {
     fullPageImage: ExperimentOverview,
@@ -78,13 +78,6 @@ export default [[
       "Then, in a few days, when Player Two returns to the lab for phase three, they can choose to give back to you none, some, or all the money that was given to them.",
     ],
     timeout: 15000,
-    prompt: defaultPrompt,
-  }, {
-    items: [
-      "After the search task, you will be asked a few questions and then move on to the decision task. One will be how many “X” letters you saw. For each trial you correctly answer the number of “X” letters you will receive and additional $.05.",
-      { textItems: [{ component: "strong", text: "The basic layout of the screen will look like this:" }] }
-    ],
-    images: [DemoImage3],
     prompt: defaultPrompt,
   }, {
     fullPageImage: TrustOverview1,
