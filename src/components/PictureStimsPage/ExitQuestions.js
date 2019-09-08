@@ -45,7 +45,7 @@ const Form = styled.div`
   align-items: center;
 `;
 
-const ExitQuestions = ({ currentPage, dispatch, handleSubmit }) => {
+const ExitQuestions = ({ dispatch, handleSubmit }) => {
   const [numXs, setNumXs] = React.useState(null);
   const inputRef = React.useRef(null);
 

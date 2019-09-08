@@ -150,6 +150,11 @@ import MEM_6 from "../assets/males/MEM_6.jpg"
 
 import StimRandomizer from "../utils/StimRandomizer"
 
+export const practiceImages = [
+  WF_76,
+  WF_77,
+];
+
 export default new StimRandomizer([
   [
     // White Femaless
@@ -221,8 +226,6 @@ export default new StimRandomizer([
     WF_73,
     WF_74,
     WF_75,
-    WF_76,
-    WF_77,
     // WF_78 // Odd numbers not supported
   ], [
     // Asian Femaless

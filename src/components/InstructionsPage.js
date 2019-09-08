@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import {is} from "ramda";
 
-import INSTRUCTIONS from "../data/instructions";
+import useAfterTimeout from "../hooks/useAfterTimeout";
 import useKeyPress from "../hooks/useKeyPress";
 import { isPresent } from "../utils/presence";
+import INSTRUCTIONS from "../data/instructions";
 
 import Instructions from "./ui/Instructions";
-
-const NUM_INSTRUCTIONS = INSTRUCTIONS.length - 1;
 
 const P = styled.p`
   font-size: 24px;
@@ -20,6 +19,7 @@ const ImagesWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 
   & > *:not(:last-child) {
     margin-right: 15px;
@@ -28,6 +28,12 @@ const ImagesWrapper = styled.div`
 
 const Image = styled.img`
   width: 475px;
+`;
+
+const FullPageImage = styled.img`
+  width: 100%;
+  max-width: 1200px;
+  padding: -1px -1px -1px -1px;
 `;
 
 const isString = is(String);
@@ -43,31 +49,46 @@ const renderTextInstruction = (instruction) => isString(instruction)
   ? instruction
   : renderTextItem(instruction.textItems);
 
-const InstructionsPage = ({ history, match: { params: {page} } }) => {
-  const intPage = parseInt(page);
+const proceedLocations = ['/practice-letters', '/practice-trust', '/manipulation-check'];
 
+const InstructionsPage = ({history, match: { path, params: {group, page} }}) => {
+  const intGroup = parseInt(group);
+  const intPage = parseInt(page);
+  const instructions = INSTRUCTIONS[intGroup];
+  const numInstructions = instructions.length - 1;
+  const currentPage = instructions[intPage];
+
+  const denyProgress = !useAfterTimeout(currentPage.timeout || 0);
+  const prompt = denyProgress ? "" : currentPage.prompt;
   useKeyPress(["Enter"], () => {
-    if (intPage === NUM_INSTRUCTIONS) {
-      history.replace("/manipulation-check");
+    if (denyProgress) {
+      return;
+    }
+    if (intPage === numInstructions) {
+      history.replace(proceedLocations[intGroup]);
     } else {
-      history.replace(`/instructions/${intPage + 1}`)
+      history.replace(`/instructions/${group}/${intPage + 1}`)
     }
   });
 
-  const currentPage = INSTRUCTIONS[page];
+  if (isPresent(currentPage.fullPageImage)) {
+    return (
+      <Instructions prompt={prompt}>
+        <FullPageImage alt="Image" src={currentPage.fullPageImage} />
+      </Instructions>
+    );
+  }
 
-  return isPresent(currentPage.images) ? (
-      <Instructions prompt={currentPage.prompt}>
-          {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, i)}</P>)}
+  return (
+    <Instructions prompt={prompt}>
+      {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, i)}</P>)}
+      {isPresent(currentPage.images) && (
         <ImagesWrapper>
           {currentPage.images.map((image, i) => <Image key={i} alt={`img ${i}`} src={image} />)}
         </ImagesWrapper>
-      </Instructions>
-    ) : (
-      <Instructions prompt={currentPage.prompt}>
-        {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, i)}</P>)}
-      </Instructions>
-    );
+      )}
+    </Instructions>
+  );
 };
 
 export default InstructionsPage;

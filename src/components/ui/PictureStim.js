@@ -11,15 +11,18 @@ const Images = styled.div`
   justify-content: space-around;
   width: 100%;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")}
-
-  & > *:not(last-child) {
-  }
 `;
 
 const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
+`;
+
+const HiddenBox = styled.div`
+  padding: 0.5rem;
+  visibility: hidden;
 `;
 
 const Image = styled.img`
@@ -42,6 +45,7 @@ export const PictureStim = ({ body, images, letter, letterPosition, prompt, show
             <Letter visible={showLetter && letterPosition === "<"}>{letter}</Letter>
             <Image src={head(images)} />
           </ImageWrapper>
+          <HiddenBox>$1.00</HiddenBox>
           <ImageWrapper>
             <Letter visible={showLetter && letterPosition === ">"}>{letter}</Letter>
             <Image src={last(images)} />

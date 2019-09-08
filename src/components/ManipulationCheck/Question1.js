@@ -5,24 +5,20 @@ import { isPresent } from "../../utils/presence";
 
 import {P, Select} from "./ui";
 
-const Question1 = ({ onIncorrect, onComplete, showRemainingChances }) => {
+const Question1 = ({ onComplete }) => {
   const [answer, setAnswer] = React.useState(null);
 
   React.useEffect(() => {
-    if (answer === "4") {
-      onComplete();
-    } else if (isPresent(answer)) {
-      onIncorrect();
-      showRemainingChances();
+    if (isPresent(answer)) {
+      onComplete(answer);
     }
   }, [answer]); // eslint-disable-line
 
   return (
     <Page>
       <P>
-        If the First Mover chooses to trust the Second Mover with $1.00, how much
-        will this amount be multiplied by before being placed in the Second Mover's
-        account?
+        When you choose to trust Player 2 with $1.00, how much
+        will this amount be multiplied by before being given to Player 2?
       </P>
       <Select onChange={e => setAnswer(e.target.value)}>
         <option>Select an option</option>
@@ -34,8 +30,7 @@ const Question1 = ({ onIncorrect, onComplete, showRemainingChances }) => {
         <option value="5">5</option>
       </Select>
     </Page>
-  )
-
+  );
 };
 
 export default Question1;

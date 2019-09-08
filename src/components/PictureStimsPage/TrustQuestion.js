@@ -3,29 +3,43 @@ import React from "react";
 import useKeyPress from "../../hooks/useKeyPress";
 import { elapsedTime } from "../../utils/date";
 
-import PictureStim from "../ui/PictureStim";
+import TrustQuestionLayout from "../ui/TrustQuestionLayout";
+
+const zeroDollars = "$0.00";
+const fourDollars = "$4.00";
 
 const TrustQuestion = ({ currentPage, handleSubmit }) => {
   const startRef = React.useRef(new Date());
+  const [dollarAmounts, setDollarAmounts] = React.useState([zeroDollars, "$1.00", zeroDollars])
 
   useKeyPress(["ArrowLeft", "ArrowRight"], (key) => {
     const selectionTime = elapsedTime(startRef.current, new Date());
-    const choice = key === "ArrowLeft" ? currentPage.images[0] : currentPage.images[1];
+    const didChooseLeft = key === "ArrowLeft";
+    const choice = didChooseLeft ? currentPage.images[0] : currentPage.images[1];
 
-    handleSubmit({ choice, selectionTime});
+    setDollarAmounts([
+      didChooseLeft ? fourDollars : zeroDollars,
+      zeroDollars,
+      didChooseLeft ? zeroDollars : fourDollars
+    ])
+
+    setTimeout(() => {
+      handleSubmit({ choice, selectionTime});
+    }, 2100);
   });
 
   return (
-    <PictureStim
+    <TrustQuestionLayout
       images={currentPage.images}
-      letter="A"
-      letterPosition="<"
-      showLetter={false}
-      showImages={true}
+      dollarAmounts={dollarAmounts}
+      showLeft={true}
+      showRight={true}
       prompt={[
-        "Which participant do you choose to trust your $1.00 with?",
+        "Now you are Player 1 and have been allocated $1.00.",
         <br />,
-        "Use the left arrow to choose the left participant and the right arrow to choose the right."
+        "Which CU Boulder participant do you want to trust your $1.00 with?",
+        <br />,
+        "Use the left arrow to choose the left participant and the right arrow to choose the right participant."
       ]}
     />
   )

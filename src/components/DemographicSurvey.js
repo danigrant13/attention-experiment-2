@@ -41,34 +41,6 @@ export const Select = styled.select`
 
 const questions = [
   {
-    text: "The study is over. Do you have any questions about today's experiment?",
-    input: "text",
-  },
-  {
-    text: "Was the experiment clear in its overall purpose and did the procedure make sense?",
-    input: "text",
-  },
-  {
-    text: "Do you have any personal feelings and/or reactions to the experiment?",
-    input: "text",
-  },
-  {
-    text: "Today's experiment was designed to help us test some very specific hypotheses abouthuman behavior. Do you have any idea what those hypotheses were? If you had to guess,what would you say were the hypotheses we were testing today?",
-    input: "text",
-  },
-  {
-    text: "Did you find any aspect of the procedure odd, upsetting or disturbing?",
-    input: "text",
-  },
-  {
-    text: "Did you wonder at any point whether there was more than meets the eye to any of theprocedures that we had you complete today? That is, do you think that there might havebeen any information that we held back from explaining from you about the experimentuntil now? ",
-    input: "text",
-  },
-  {
-    text: "If you had any suspicions, do you think they affected your behavior during the study?",
-    input: "text",
-  },
-  {
     text: "What is your gender identity?",
     input: "select",
     options: ["male", "female", "other"],
@@ -114,6 +86,34 @@ const questions = [
     input: "select",
     options: ["$10,000 - $19,999", "$20,000 - $29,999", "30,000 - $39,999", "$40,000 - $49,999", "$50,000 - $74,999", "$75,000 - $99,999", "$100,000 - $149,999", "$150,000 or more"],
     required: true
+  },
+  {
+    text: "The study is over. Do you have any questions about today's experiment?",
+    input: "text",
+  },
+  {
+    text: "Was the experiment clear in its overall purpose and did the procedure make sense?",
+    input: "text",
+  },
+  {
+    text: "Do you have any personal feelings and/or reactions to the experiment?",
+    input: "text",
+  },
+  {
+    text: "Today's experiment was designed to help us test some very specific hypotheses abouthuman behavior. Do you have any idea what those hypotheses were? If you had to guess,what would you say were the hypotheses we were testing today?",
+    input: "text",
+  },
+  {
+    text: "Did you find any aspect of the procedure odd, upsetting or disturbing?",
+    input: "text",
+  },
+  {
+    text: "Did you wonder at any point whether there was more than meets the eye to any of theprocedures that we had you complete today? That is, do you think that there might havebeen any information that we held back from explaining from you about the experimentuntil now? ",
+    input: "text",
+  },
+  {
+    text: "If you had any suspicions, do you think they affected your behavior during the study?",
+    input: "text",
   },
 ];
 
