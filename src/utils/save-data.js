@@ -16,7 +16,7 @@ const headers = pipe(
   map((index) => map(val => val + index, csvKeys)),
   flatten,
   join(',')
-)() + ',' + range(1, 16).map(num => "Q" + num);
+)() + ',' + range(1, 16).map(num => "Q" + num) + ["Manipulation Q1", "Manipulation Q2", "Manipulation Q3"];
 
 const trustItemToRow = trustItem => ([
   trustItem.actualNumXs,
@@ -35,6 +35,12 @@ const trustJSONtoRows = pipe(
   join(',')
 )
 
+const demographicRow = demographics => demographics.join(',');
 
-export default ({ trustData, demographics }) =>
-  `${headers}\n${trustJSONtoRows(trustData)},${demographics.join(',')}`;
+const manipulationCheckRow = ({question1, question2, question3}) =>
+  [question1, question2, question3].join(',')
+
+export default ({ trustData, demographics, manipulationCheck }) =>
+  `${headers}\n${trustJSONtoRows(trustData)},` +
+  `${demographicRow(demographics)},` +
+  `${manipulationCheckRow(manipulationCheck)}`;
