@@ -58,7 +58,7 @@ const questions = [
     required: true,
   },
   {
-    text: ["What is your primary language?", <br />, "(i.e. the one you speak most of the time?)"],
+    text: ["What is your primary language?", <br />, "(i.e., the one you speak most of the time?)"],
     input: "select",
     options: ["English", "Spanish", "Mandarin", "Hindi", "Arabic", "Portuguese", "Bengali", "Russian", "Japanese", "Other"],
     required: true,
