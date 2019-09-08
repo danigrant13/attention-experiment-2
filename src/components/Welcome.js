@@ -11,7 +11,7 @@ const P = styled.p`
 
 const Welcome = ({history}) => {
   useKeyPress([], () => {
-    history.replace("/instruction/0/0");
+    history.replace("/instructions/0/0");
   });
 
   return (
