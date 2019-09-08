@@ -32,7 +32,7 @@ const getSummary = (currentPage, pageIndex) => {
       During {isExperimental ? "" : "practice "}trial {isExperimental ? pageIndex - 2 : pageIndex + 1} there&nbsp;
       {isPlural ? "were" : "was"}&nbsp;
       {getNumXs(currentPage)}&nbsp;
-      "X"{isPlural ? "s" : ""} that cycled through
+      "X"{isPlural ? "s" : ""} that cycled through.
     </P>
   )
 }

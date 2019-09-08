@@ -30,11 +30,11 @@ const EndingScreen = ({ data }) => {
 
   return (
     <Instructions prompt="Press ENTER to continue.">
-      <P>Thank you for taking part in the experiment!</P>
-      <P>On the next page you will receive your code for MTurk participation payment.</P>
+      <P>Thank you for taking part in this study!</P>
       <P>
-        Once we have finished running participants, you will be awarded your&nbsp;
-        performance based fee for the search task.
+        Once we have finished running participants at the end of the semester,<br/>
+        we will randomly select a subset of participants who will be awarded a bonus&nbsp;
+        monetary payment of $20.00.
       </P>
     </Instructions>
   );
