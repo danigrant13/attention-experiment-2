@@ -35,7 +35,7 @@ const TrustQuestion = ({ currentPage, handleSubmit }) => {
       showLeft={true}
       showRight={true}
       prompt={[
-        "Now you are Player 1 and have been allocated $1.00.",
+        "Now you are Player Two and have been allocated $1.00.",
         <br />,
         "Which CU Boulder participant do you want to trust your $1.00 with?",
         <br />,

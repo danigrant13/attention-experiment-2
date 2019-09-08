@@ -17,8 +17,8 @@ const Question1 = ({ onComplete }) => {
   return (
     <Page>
       <P>
-        When you choose to trust Player 2 with $1.00, how much
-        will this amount be multiplied by before being given to Player 2?
+        When you choose to trust Player Two with $1.00, how much
+        will this amount be multiplied by before being given to Player Two?
       </P>
       <Select onChange={e => setAnswer(e.target.value)}>
         <option>Select an option</option>

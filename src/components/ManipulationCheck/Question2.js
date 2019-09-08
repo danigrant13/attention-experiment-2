@@ -17,7 +17,7 @@ const Question2 = ({ onComplete }) => {
   return (
     <Page>
       <P>
-        What is the highest amount of money that Player 2 can give back to you?
+        What is the highest amount of money that Player Two can give back to you?
       </P>
       <Select onChange={e => setAnswer(e.target.value)}>
         <option>Select an option</option>
