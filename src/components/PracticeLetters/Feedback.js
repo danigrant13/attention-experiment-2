@@ -15,7 +15,7 @@ const Feedback = ({ numXs, isCorrect, onStep }) => {
   useKeyPress(["Enter"], onStep);
 
   return (
-    <Instructions prompt={`Press ENTER to ${isCorrect ? 'continue' : 'begin the practice trial'}`}>
+    <Instructions prompt={`Press ENTER to ${isCorrect ? 'continue.' : 'begin the practice trial.'}`}>
         {isCorrect ? (
         <>
           <P>Correct! Two 'X's appeared in the practice trial!</P>

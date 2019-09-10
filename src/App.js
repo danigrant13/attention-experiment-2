@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
 import {pathOr} from "ramda";
 
+import DemographicIntro from "./components/DemographicIntro";
 import DemographicSurvey from "./components/DemographicSurvey";
 import ExperimentIntro from "./components/ExperimentIntro";
 import WelcomePage from "./components/Welcome";
@@ -75,6 +76,7 @@ const App = () => {
         <Route path="/instructions/:group/:page" render={(props) => (
           <InstructionsPage key={pathOr(null, ["match", "params", "page"], props)} {...props} />
         )} />
+        <Route path="/demographic-intro" component={DemographicIntro} />
         <Route path="/demographics/:page" component={DemographicSurvey} />
         <Route path="/manipulation-check" component={ManipulationCheck} />
         <Route path="/experiment-intro" component={ExperimentIntro} />

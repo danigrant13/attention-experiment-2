@@ -31,17 +31,31 @@ const getSummary = (currentPage, pageIndex) => {
     <P>
       During {isExperimental ? "" : "practice "}trial {isExperimental ? pageIndex - 2 : pageIndex + 1} there&nbsp;
       {isPlural ? "were" : "was"}&nbsp;
-      {getNumXs(currentPage)}&nbsp;
-      "X"{isPlural ? "s" : ""} that cycled through.
+      {getNumXs(currentPage)} 'X'{isPlural ? "s" : ""} that cycled through.
     </P>
   )
+}
+
+const renderPrompt = (page) => {
+  switch(page) {
+    case 0:
+      return "begin the second practice trial."
+    case 1:
+      return "begin the third practice trial."
+    case 2:
+      return "continue."
+    case 27:
+      return "continue."
+    default:
+      return `begin trial ${page - 1}.`
+  }
 }
 
 const Feedback = ({ currentPage, handleSubmit, page, trustState }) => {
   useKeyPress(["Enter"], handleSubmit);
 
   return (
-    <Page prompt="Press ENTER when you are ready to begin the next trial.">
+    <Page prompt={`Press ENTER when you are ready to ${renderPrompt(page)}`}>
       <P>You are {isCorrect(currentPage, trustState) ? "correct" : "incorrect"}!</P>
       {getSummary(currentPage, page)}
     </Page>

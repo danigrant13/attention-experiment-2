@@ -29,7 +29,7 @@ const EndingScreen = ({ data }) => {
   });
 
   return (
-    <Instructions prompt="Press ENTER to continue.">
+    <Instructions prompt="Press ENTER to exit the experiment.">
       <P>Thank you for taking part in this study!</P>
       <P>
         Once we have finished running participants at the end of the semester,<br/>

@@ -9,6 +9,7 @@ import Page from "./ui/Page";
 
 const P = styled.p`
   margin-bottom: 24px;
+  max-width: 1000px;
 `;
 
 const Button = styled.button`

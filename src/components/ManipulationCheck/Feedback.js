@@ -15,10 +15,10 @@ const Feedback = ({ question, answer, correctAnswer, onStep }) => {
   useKeyPress(["Enter"], onStep);
 
   return (
-    <Instructions prompt={"Press ENTER to continue"}>
+    <Instructions prompt={"Press ENTER to continue."}>
         {answer === correctAnswer ? (
         <>
-          <P>Correct! The answer is {correctAnswer}</P>
+          <P>Correct! The answer is {correctAnswer}.</P>
         </>
       ) : (
         <P>That is incorrect! The correct answer was {correctAnswer}</P>
