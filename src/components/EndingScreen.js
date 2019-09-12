@@ -32,8 +32,7 @@ const EndingScreen = ({ data }) => {
     <Instructions prompt="Press ENTER to exit the experiment.">
       <P>Thank you for taking part in this study!</P>
       <P>
-        Once we have finished running participants at the end of the semester,<br/>
-        we will randomly select a subset of participants who will be awarded a bonus monetary payment of $20.00.
+        This study contained some deception. Participants in phase two will not be awarded the amount Player Two chooses to give back to them. Instead, once we have finished running participants at the end of the semester, we will randomly select a subset of participants who will be awarded a bonus monetary payment of $20.00.
       </P>
     </Instructions>
   );

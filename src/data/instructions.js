@@ -71,9 +71,7 @@ export default [[
 ], [{
     items: [
       "In the decision task there are two roles: Player One and Player Two. You will be Player One, and you will get to choose who becomes Player Two from the two CU Boulder students you are paired with.",
-      "To do this, first, a small amount of money will be given to you. To choose who will become Player Two, you will send them your money.",
-      "When you trust Player Two with your money, this money is multiplied into a larger amount and given to Player Two.",
-      "Then, in a few days, when Player Two returns to the lab for phase three, they can choose to give back to you none, some, or all the money that was given to them.",
+      "You will be given a small sum of money. Then, you will choose which CU Student you trust more by sending them your money. The student you send money to will be Player Two. Once you send them the money, it will be multiplied into a larger amount and given to Player Two. Once you are finished with your turn, Player Two will decide how much of the money they would like to give back to you.",
       "On the next screen, there will be a diagram outlining the steps for the decision task.",
     ],
     timeout: 15000,
@@ -93,7 +91,7 @@ export default [[
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [
-      "Everyone in phase two of this study will be Player One. As Player One, you will decide which participant you would like to become Player Two.",
+      "Everyone in phase two of this study will be Player One.",
       "To begin, you will be given $1.00. You will then choose who you want to send your $1.00 to. The participant you choose will become the Player Two. Your money will then be multiplied by four and placed in the Player Two’s account.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
@@ -132,8 +130,8 @@ export default [[
     prompt: defaultPrompt
   }, {
     items: [
-      "Since there will be 25 trials, you will choose 25 other participants to become Player Two. Many other people will also participate in phase two along with you and will be making decisions with the same previous participants. So, when the 25 Player Twos you chose return to the lab, they will likely be making many decisions as Player Two.",
-      "When the 25 Player Twos return to the lab for part three, they will be presented with each trial in which they were chosen to be Player Two."
+      "Since there will be 25 trials, you will choose 25 other participants to become Player Two. Those 25 Player Twos will return to the lab for phase three and take part in their turn of the decision task.",
+      "Along with you, many other participants will take on the Player One roles in phase two and will be making decisions about the same previous participants. So, when the 25 Player Twos you chose return to the lab, they will likely be taking part in many Player Two roles in the decision task."
     ],
     prompt: defaultPrompt
   }, {
