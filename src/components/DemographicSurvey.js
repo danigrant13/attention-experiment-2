@@ -109,7 +109,7 @@ const questions = [
     input: "text",
   },
   {
-    text: "Did you wonder at any point whether there was more than meets the eye to any of theprocedures that we had you complete today? That is, do you think that there might havebeen any information that we held back from explaining from you about the experimentuntil now? ",
+    text: "Did you wonder at any point whether there was more than meets the eye to any of the procedures that we had you complete today? That is, do you think that there might have been any information that we held back from explaining from you about the experiment until now?",
     input: "text",
   },
   {

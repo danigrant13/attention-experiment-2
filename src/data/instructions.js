@@ -13,7 +13,7 @@ export default [[
   {
     items: [
       `The purpose of this study is to examine how people make social decisions while engaging in other cognitive tasks. There are three phases in this study; You are participating in the second phase.`,
-      `Last semester during phase one, CU Boulder students came into the lab and we took their photos. You will see their photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
+      `Last semester, during phase one, CU Boulder students came into the lab and we took their photos. You will see their photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
       `On the next slide there will be a diagram outlining the phases of this study.`
     ],
     timeout: 10000,

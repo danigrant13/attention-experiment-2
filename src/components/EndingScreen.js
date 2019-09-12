@@ -33,8 +33,7 @@ const EndingScreen = ({ data }) => {
       <P>Thank you for taking part in this study!</P>
       <P>
         Once we have finished running participants at the end of the semester,<br/>
-        we will randomly select a subset of participants who will be awarded a bonus&nbsp;
-        monetary payment of $20.00.
+        we will randomly select a subset of participants who will be awarded a bonus monetary payment of $20.00.
       </P>
     </Instructions>
   );
