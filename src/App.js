@@ -9,6 +9,7 @@ import ExperimentIntro from "./components/ExperimentIntro";
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
 import ManipulationCheck from "./components/ManipulationCheck";
+import ParticipantNumberPage from "./components/ParticipantNumberPage";
 import PictureStimsPage from "./components/PictureStimsPage";
 import PracticeIntro from "./components/PracticeIntro";
 import PracticeLetters from "./components/PracticeLetters";
@@ -40,6 +41,8 @@ const reducer = (state, action) => {
       return { ...state, trustData: [...state.trustData, action.trustRow] };
     case 'manipulation-check':
       return { ...state, manipulationCheck: action.answers };
+    case 'participant-number':
+      return { ...state, participantNumber: action.participantNumber };
     default:
       return state;
   }
@@ -47,7 +50,8 @@ const reducer = (state, action) => {
 
 const initialValues = {
   trustData: [],
-  demographics: []
+  demographics: [],
+  manipulationCheck: {},
 };
 
 export const setTrustRow = (trustRow) => ({
@@ -65,6 +69,11 @@ export const setManipulationCheck = (answers) => ({
   answers,
 });
 
+export const setParticipantNumber = (participantNumber) => ({
+  type: 'participant-number',
+  participantNumber,
+});
+
 const App = () => {
   const [state, dispatch] = React.useReducer(reducer, initialValues);
 
@@ -72,7 +81,8 @@ const App = () => {
     <DataContext.Provider value={{ state, dispatch }}>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/" component={WelcomePage} />
+        <Route exact path="/" component={ParticipantNumberPage} />
+        <Route exact path="/welcome" component={WelcomePage} />
         <Route path="/instructions/:group/:page" render={(props) => (
           <InstructionsPage key={pathOr(null, ["match", "params", "page"], props)} {...props} />
         )} />

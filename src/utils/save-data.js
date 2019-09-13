@@ -1,5 +1,7 @@
 import {flatten, join, map, pipe, range, thunkify} from "ramda";
 
+const removeCommas = string => string && string.replace(/,/g, '*');
+
 const csvKeys = [
   "actualX",
   "perceivedX",
@@ -11,12 +13,17 @@ const csvKeys = [
   "sideChosen"
 ];
 
-const headers = pipe(
-  thunkify(range)(1, 29),
-  map((index) => map(val => val + index, csvKeys)),
-  flatten,
-  join(',')
-)() + ',' + range(1, 16).map(num => "Q" + num) + ["Manipulation Q1", "Manipulation Q2", "Manipulation Q3"];
+const headers = [
+  'participant',
+  pipe(
+    thunkify(range)(1, 29),
+    map((index) => map(val => val + index, csvKeys)),
+    flatten,
+    join(',')
+  )(),
+  range(1, 16).map(num => "Q" + num).join(','),
+  "Manipulation Q1, Manipulation Q2, Manipulation Q3"
+].join(',')
 
 const trustItemToRow = trustItem => ([
   trustItem.actualNumXs,
@@ -35,12 +42,14 @@ const trustJSONtoRows = pipe(
   join(',')
 )
 
-const demographicRow = demographics => demographics.join(',');
+const demographicRow = demographics => demographics.map(demo => removeCommas(demo)).join(',');
 
 const manipulationCheckRow = ({question1, question2, question3}) =>
-  [question1, question2, question3].join(',')
+  [question1, question2, question3].map(man => removeCommas(man)).join(',')
 
-export default ({ trustData, demographics, manipulationCheck }) =>
-  `${headers}\n${trustJSONtoRows(trustData)},` +
+export default ({ trustData, demographics, manipulationCheck, participantNumber }) =>
+  `${headers}\n` +
+  `${participantNumber || "missing"},` +
+  `${trustJSONtoRows(trustData)},` +
   `${demographicRow(demographics)},` +
   `${manipulationCheckRow(manipulationCheck)}`;
