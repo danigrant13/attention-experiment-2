@@ -157,7 +157,7 @@ export const practiceImages = [
 
 export default new StimRandomizer([
   [
-    // White Femaless
+    // White Females
     WF_1,
     WF_2,
     WF_3,
@@ -228,7 +228,7 @@ export default new StimRandomizer([
     WF_75,
     // WF_78 // Odd numbers not supported
   ], [
-    // Asian Femaless
+    // Asian Females
     AF_1,
     AF_2,
     AF_3,
@@ -237,19 +237,19 @@ export default new StimRandomizer([
     AF_6,
     // AF_7 // Odd numbers not supported
   ], [
-    // Black Femaless
+    // Black Females
     BF_1,
     BF_2,
     BF_3,
     BF_4
   ], [
-    // Middle Eastern Femaless
+    // Middle Eastern Females
     MEF_1,
     MEF_2,
     MEF_3,
     MEF_4
   ], [
-    // Latin Femaless
+    // Latin Females
     LF_1,
     LF_2,
     LF_3,
@@ -270,7 +270,7 @@ export default new StimRandomizer([
     HF_5,
     HF_6
   ], [
-    // White Male
+    // White Males
     WM_1,
     WM_2,
     WM_3,
@@ -304,7 +304,7 @@ export default new StimRandomizer([
     WM_34,
     // WM_35 // Odd numbers not suppoted
   ], [
-    // Hazey Male
+    // Hazey Males
     HM_1,
     HM_2,
     HM_3,
@@ -312,12 +312,12 @@ export default new StimRandomizer([
     HM_5,
     HM_6
   ], [
-    // Asian Mail
+    // Asian Males
     AM_1,
     AM_2
     //AM_3 // Odd numbers not supported
   ], [
-     // Latin Male
+     // Latin Males
      LM_1,
      LM_2,
      LM_3,
