@@ -1,7 +1,8 @@
 import DemoImage1 from "../assets/demo_image_1.png";
 import DemoA from "../assets/demo_a.jpg";
 import DemoB from "../assets/demo_b.jpg";
-import DemoC from "../assets/demo_c.jpg";
+import DemoCPositive from "../assets/demo_c_positive.jpg";
+import DemoCNegative from "../assets/demo_c_negative.jpg";
 import DemoLetters from "../assets/demo_letters.jpg";
 import ExperimentOverview from "../assets/experiment_overview.jpg";
 import TrustOverview1 from "../assets/trust_overview_1.jpg";
@@ -100,11 +101,21 @@ export default [[
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [
-      "In this example, the Player One has chosen the to trust the green highlighted participant. As a result, the red participant is assigned to be Player Two and $4.00 is placed in their account.",
+      {textItems: [
+        "In this example, ",
+        { component: "strong", text: "Player One" },
+        ({negativeLanguage}) => ` is asked, "With which CU Boulder student do you ${negativeLanguage ? "NOT " : " "}want to trust your $1.00?", and has chosen to ${negativeLanguage ? "NOT " : ""} trust the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
+      ]},
+      {textItems: [
+        ({negativeLanguage}) => `So, if you select the person on the ${negativeLanguage ? "RIGHT" : "RIGHT"} then the person on the ${negativeLanguage ? "LEFT" : "RIGHT"} will become `,
+        { component: "strong", text: "Player Two" },
+        ({negativeLanguage}) => `, and if you select the person on the ${negativeLanguage ? "LEFT" : "LEFT"} then the person on the ${negativeLanguage ? "RIGHT" : "LEFT"} will become `,
+        { component: "strong", text: "Player Two." },
+      ]},
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     timout: 15000,
-    images: [DemoC],
+    images: [({negativeLanguage}) => (negativeLanguage ? DemoCNegative : DemoCPositive)],
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [

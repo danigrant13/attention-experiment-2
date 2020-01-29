@@ -1,20 +1,22 @@
 import React from "react";
 
 import useKeyPress from "../../hooks/useKeyPress";
-import { elapsedTime } from "../../utils/date";
+import {elapsedTime} from "../../utils/date";
 
 import TrustQuestionLayout from "../ui/TrustQuestionLayout";
 
 const zeroDollars = "$0.00";
 const fourDollars = "$4.00";
+const leftKey = "y";
+const rightKey = "b";
 
-const TrustQuestion = ({ currentPage, handleSubmit }) => {
+const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
   const startRef = React.useRef(new Date());
   const [dollarAmounts, setDollarAmounts] = React.useState([zeroDollars, "$1.00", zeroDollars])
 
-  useKeyPress(["ArrowLeft", "ArrowRight"], (key) => {
+  useKeyPress([leftKey, rightKey], (key) => {
     const selectionTime = elapsedTime(startRef.current, new Date());
-    const didChooseLeft = key === "ArrowLeft";
+    const didChooseLeft = key === leftKey;
     const choice = didChooseLeft ? currentPage.images[0] : currentPage.images[1];
 
     setDollarAmounts([
@@ -26,7 +28,7 @@ const TrustQuestion = ({ currentPage, handleSubmit }) => {
     setTimeout(() => {
       handleSubmit({ choice, selectionTime});
     }, 2100);
-  });
+  }, 1);
 
   return (
     <TrustQuestionLayout
@@ -37,9 +39,9 @@ const TrustQuestion = ({ currentPage, handleSubmit }) => {
       prompt={[
         "Now you are Player One and have been given $1.00.",
         <br />,
-        "Which CU Boulder student do you want to trust your $1.00 with?",
+        `With which CU Boulder student do you ${negativeLanguage ? 'NOT ' : ' '}want to trust your $1.00 with?`,
         <br />,
-        "Use the left arrow to choose the left participant and the right arrow to choose the right participant."
+        "Use the yellow 'Y' to choose the left participant and the yellow 'B' to choose the right participant."
       ]}
     />
   )

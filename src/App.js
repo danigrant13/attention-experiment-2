@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
 import {pathOr} from "ramda";
 
+import {coinFlip} from "./utils/random";
+
 import DemographicIntro from "./components/DemographicIntro";
 import DemographicSurvey from "./components/DemographicSurvey";
 import ExperimentIntro from "./components/ExperimentIntro";
@@ -49,6 +51,7 @@ const reducer = (state, action) => {
 };
 
 const initialValues = {
+  negativeLanguage: coinFlip() ? true : false,
   trustData: [],
   demographics: [],
   manipulationCheck: {},

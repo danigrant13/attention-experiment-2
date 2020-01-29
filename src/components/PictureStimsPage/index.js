@@ -64,13 +64,18 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
       )
     case "trust":
       return (
-        <TrustQuestion
-          currentPage={currentPage}
-          handleSubmit={({choice, selectionTime}) => {
-            trustDispatch(setSelection(choice, selectionTime));
-            stepTo('exit-questions')();
-          }}
-        />
+        <DataContext.Consumer>
+          {({state: {negativeLanguage}}) => (
+            <TrustQuestion
+              currentPage={currentPage}
+              negativeLanguage={negativeLanguage}
+              handleSubmit={({choice, selectionTime}) => {
+                trustDispatch(setSelection(choice, selectionTime));
+                stepTo('exit-questions')();
+              }}
+            />
+          )}
+        </DataContext.Consumer>
       );
     case "exit-questions":
       return (

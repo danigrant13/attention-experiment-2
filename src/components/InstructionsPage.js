@@ -7,6 +7,7 @@ import useKeyPress from "../hooks/useKeyPress";
 import { isPresent } from "../utils/presence";
 import INSTRUCTIONS from "../data/instructions";
 
+import {DataContext} from "../App";
 import Instructions from "./ui/Instructions";
 
 const P = styled.p`
@@ -39,16 +40,31 @@ const FullPageImage = styled.img`
 
 const isString = is(String);
 
-const renderTextItem = textItems => textItems.map(
-  (item, i) =>
-    isString(item)
-      ? item
-      : React.createElement(item.component, {key: i}, [item.text])
+const isFunction = (object) => typeof object === 'function';
+
+const renderTextItem = (textItems, context) => textItems.map(
+  (item, i) => {
+    if(isString(item)) {
+      return item;
+    } else if (isFunction(item)) {
+      return item(context);
+    }
+    return React.createElement(
+      item.component,
+      {key: i},
+      [isFunction(item.text) ? item.text(context) : item.text]
+    );
+  }
 );
 
-const renderTextInstruction = (instruction) => isString(instruction)
-  ? instruction
-  : renderTextItem(instruction.textItems);
+const renderTextInstruction = (instruction, context) => {
+  if (isString(instruction)) {
+    return instruction
+  } else if (isFunction(instruction)) {
+    return instruction(context);
+  }
+  return renderTextItem(instruction.textItems, context);
+}
 
 const proceedLocations = ['/practice-letters', '/practice-trust', '/manipulation-check'];
 
@@ -81,14 +97,19 @@ const InstructionsPage = ({history, match: { path, params: {group, page} }}) => 
   }
 
   return (
-    <Instructions prompt={prompt}>
-      {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, i)}</P>)}
-      {isPresent(currentPage.images) && (
-        <ImagesWrapper>
-          {currentPage.images.map((image, i) => <Image key={i} alt={`img ${i}`} src={image} />)}
-        </ImagesWrapper>
+    <DataContext.Consumer>
+      {({ state }) => (
+        <Instructions prompt={prompt}>
+          {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, state)}</P>)}
+          {isPresent(currentPage.images) && (
+            <ImagesWrapper>
+              {currentPage.images.map((image, i) =>
+                <Image key={i} alt={`img ${i}`} src={typeof image == 'function' ? image(state) : image} />)}
+            </ImagesWrapper>
+          )}
+        </Instructions>
       )}
-    </Instructions>
+    </DataContext.Consumer>
   );
 };
 

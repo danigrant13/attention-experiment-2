@@ -16,8 +16,8 @@ const Welcome = ({history}) => {
 
   return (
     <Instructions prompt="Press any key to continue.">
-      <P>Welcome to the Experiment!</P>
-      <P>On the next screen you will see instructions for this study</P>
+      <P>Welcome to the study!</P>
+      <P>On the next screen you will see instructions for this study.</P>
     </Instructions>
   )
 };

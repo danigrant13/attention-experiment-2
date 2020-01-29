@@ -3,8 +3,9 @@ import {__, either, includes, isEmpty, thunkify} from "ramda";
 
 import {isPresent} from "../utils/presence";
 
-const useKeyPress = (targetKeys = [], callback) => {
+const useKeyPress = (targetKeys = [], callback, limit = -1) => {
   const [keyPressed, setKeyPressed] = useState("");
+  const [limitCount, setLimitCount] = useState(0);
 
   const isValidKey = either(
     thunkify(isEmpty)(targetKeys),
@@ -27,7 +28,12 @@ const useKeyPress = (targetKeys = [], callback) => {
   useEffect(() => {
     if (isPresent(keyPressed)) {
       setKeyPressed("");
-      callback(keyPressed);
+
+      setLimitCount(prevLimit => prevLimit + 1);
+
+      if (limit < 0 || limitCount < limit) {
+        callback(keyPressed);
+      }
     }
   }, [keyPressed]); // eslint-disable-line
 };

@@ -59,6 +59,12 @@ const questions = [
     required: true,
   },
   {
+    text: "Which is your dominant hand?",
+    input: "select",
+    options: ["left", "right", "I use them equally"],
+    required: true,
+  },
+  {
     text: ["What is your primary language?", <br />, "(i.e., the one you speak most of the time?)"],
     input: "select",
     options: ["English", "Spanish", "Mandarin", "Hindi", "Arabic", "Portuguese", "Bengali", "Russian", "Japanese", "Other"],

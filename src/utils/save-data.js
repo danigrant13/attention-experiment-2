@@ -15,6 +15,7 @@ const csvKeys = [
 
 const headers = [
   'participant',
+  'condition',
   pipe(
     thunkify(range)(1, 29),
     map((index) => map(val => val + index, csvKeys)),
@@ -47,9 +48,10 @@ const demographicRow = demographics => demographics.map(demo => removeCommas(dem
 const manipulationCheckRow = ({question1, question2, question3}) =>
   [question1, question2, question3].map(man => removeCommas(man)).join(',')
 
-export default ({ trustData, demographics, manipulationCheck, participantNumber }) =>
+export default ({ negativeLanguage, trustData, demographics, manipulationCheck, participantNumber }) =>
   `${headers}\n` +
   `${participantNumber || "missing"},` +
+  `${negativeLanguage ? "notTrust" : "trust"},` +
   `${trustJSONtoRows(trustData)},` +
   `${demographicRow(demographics)},` +
   `${manipulationCheckRow(manipulationCheck)}`;
