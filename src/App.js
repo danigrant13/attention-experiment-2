@@ -5,8 +5,6 @@ import {pathOr} from "ramda";
 
 import {coinFlip} from "./utils/random";
 
-import DemographicIntro from "./components/DemographicIntro";
-import DemographicSurvey from "./components/DemographicSurvey";
 import ExperimentIntro from "./components/ExperimentIntro";
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
@@ -37,8 +35,6 @@ export const DataContext = React.createContext(null);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'demographics':
-      return { ...state, demographics: [...state.demographics, action.answer]  }
     case 'trust-row': 
       return { ...state, trustData: [...state.trustData, action.trustRow] };
     case 'manipulation-check':
@@ -53,7 +49,6 @@ const reducer = (state, action) => {
 const initialValues = {
   negativeLanguage: coinFlip() ? true : false,
   trustData: [],
-  demographics: [],
   manipulationCheck: {},
 };
 
@@ -61,11 +56,6 @@ export const setTrustRow = (trustRow) => ({
   type: 'trust-row',
   trustRow,
 });
-
-export const setDemographicQuestion = (answer, questionNumber) => ({
-  type: "demographics",
-  answer,
-})
 
 export const setManipulationCheck = (answers) => ({
   type: "manipulation-check",
@@ -89,8 +79,6 @@ const App = () => {
         <Route path="/instructions/:group/:page" render={(props) => (
           <InstructionsPage key={pathOr(null, ["match", "params", "page"], props)} {...props} />
         )} />
-        <Route path="/demographic-intro" component={DemographicIntro} />
-        <Route path="/demographics/:page" component={DemographicSurvey} />
         <Route path="/manipulation-check" component={ManipulationCheck} />
         <Route path="/experiment-intro" component={ExperimentIntro} />
         <Route path="/practice-intro" component={PracticeIntro} />

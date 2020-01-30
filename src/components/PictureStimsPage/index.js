@@ -100,7 +100,7 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
           trustState={trustState}
           handleSubmit={() => {
             if (pageIndex === NUM_PAGES - 1) {
-              history.replace('/demographic-intro');
+              history.replace('/thank-you');
             } else if (pageIndex === 2) {
               history.replace('/experiment-intro');
             } else {

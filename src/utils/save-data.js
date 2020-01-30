@@ -22,7 +22,6 @@ const headers = [
     flatten,
     join(',')
   )(),
-  range(1, 16).map(num => "Q" + num).join(','),
   "Manipulation Q1, Manipulation Q2, Manipulation Q3"
 ].join(',')
 
@@ -43,15 +42,12 @@ const trustJSONtoRows = pipe(
   join(',')
 )
 
-const demographicRow = demographics => demographics.map(demo => removeCommas(demo)).join(',');
-
 const manipulationCheckRow = ({question1, question2, question3}) =>
   [question1, question2, question3].map(man => removeCommas(man)).join(',')
 
-export default ({ negativeLanguage, trustData, demographics, manipulationCheck, participantNumber }) =>
+export default ({ negativeLanguage, trustData, manipulationCheck, participantNumber }) =>
   `${headers}\n` +
   `${participantNumber || "missing"},` +
   `${negativeLanguage ? "notTrust" : "trust"},` +
   `${trustJSONtoRows(trustData)},` +
-  `${demographicRow(demographics)},` +
   `${manipulationCheckRow(manipulationCheck)}`;
