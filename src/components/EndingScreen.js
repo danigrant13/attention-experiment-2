@@ -22,9 +22,6 @@ const EndingScreen = ({ data, data: { participantNumber } }) => {
     }
   }, [data]);
   useKeyPress(["Enter"], () => {
-    if (isPresent(window.jatos)) {
-      window.jatos.endStudy();
-    }
     console.log("Ending Study");
     window.location.assign(`https://cuboulder.qualtrics.com/jfe/form/SV_3sfFtN8pzVD3Nnn?participantNumber=${participantNumber}`)
   });
