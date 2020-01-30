@@ -13,7 +13,7 @@ const P = styled.p`
   max-width: 1000px;
 `;
 
-const EndingScreen = ({ data }) => {
+const EndingScreen = ({ data, data: { participantNumber } }) => {
   data && console.log(saveData(data));
   React.useEffect(() => {
     if (isPresent(window.jatos) && isPresent(data)) {
@@ -23,16 +23,17 @@ const EndingScreen = ({ data }) => {
   }, [data]);
   useKeyPress(["Enter"], () => {
     if (isPresent(window.jatos)) {
-      console.log("Ending Study");
       window.jatos.endStudy();
     }
+    console.log("Ending Study");
+    window.location.assign(`https://cuboulder.qualtrics.com/jfe/form/SV_3sfFtN8pzVD3Nnn?participantNumber=${participantNumber}`)
   });
 
   return (
-    <Instructions prompt="Press ENTER to exit the experiment.">
-      <P>Thank you for taking part in this study!</P>
+    <Instructions prompt="Press ENTER to exit the experiment and move on to the survey.">
+      <P>Thank you for taking part in the experimental trials!</P>
       <P>
-        This study contained some deception. Participants in phase two will not be awarded the amount Player Two chooses to give back to them. Instead, once we have finished running participants at the end of the semester, we will randomly select a subset of participants who will be awarded a bonus monetary payment of $20.00.
+        Lastly, you will take a survey and answer some demographic questions.
       </P>
     </Instructions>
   );

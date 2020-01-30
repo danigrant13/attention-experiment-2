@@ -102,24 +102,20 @@ export default [[
   }, {
     items: [
       {textItems: [
-        "In this example, ",
-        { component: "strong", text: "Player One" },
+        "In this example, Player One",
         ({negativeLanguage}) => ` is asked, "With which CU Boulder student do you ${negativeLanguage ? "NOT " : " "}want to trust your $1.00?", and has chosen to ${negativeLanguage ? "NOT " : ""} trust the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
       ]},
       {textItems: [
-        ({negativeLanguage}) => `So, if you select the person on the ${negativeLanguage ? "RIGHT" : "RIGHT"} then the person on the ${negativeLanguage ? "LEFT" : "RIGHT"} will become `,
-        { component: "strong", text: "Player Two" },
-        ({negativeLanguage}) => `, and if you select the person on the ${negativeLanguage ? "LEFT" : "LEFT"} then the person on the ${negativeLanguage ? "RIGHT" : "LEFT"} will become `,
-        { component: "strong", text: "Player Two." },
+        ({negativeLanguage}) => `So, if you select the person on the ${negativeLanguage ? "RIGHT" : "RIGHT"} then the person on the ${negativeLanguage ? "LEFT" : "RIGHT"} will become Player Two, and if you select the person on the ${negativeLanguage ? "LEFT" : "LEFT"} then the person on the ${negativeLanguage ? "RIGHT" : "LEFT"} will become Player Two.`,
       ]},
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
-    timout: 15000,
+    timeout: 15000,
     images: [({negativeLanguage}) => (negativeLanguage ? DemoCNegative : DemoCPositive)],
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [
-      {textItems: [{ component: "strong", text: "Player Two Role:" }]},
+      "Player Two Role:",
       "Player Two will return to the lab in the next few days to take part in the third phase of the study. They will be able to see everything you saw (including their own photo, the other participant’s photo, and the choice you made).",
       "Player Two will have an opportunity to give back as little as $0.00 and as much as $4.00 or any amount in between to you. The money they return will NOT be multiplied. It will simply be placed into your account.",
       "On the next screen, there will be a diagram reviewing the steps for the decision task.",
