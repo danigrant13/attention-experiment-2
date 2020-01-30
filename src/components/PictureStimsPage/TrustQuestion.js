@@ -16,7 +16,7 @@ const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
 
   useKeyPress([leftKey, rightKey], (key) => {
     const selectionTime = elapsedTime(startRef.current, new Date());
-    const didChooseLeft = key === leftKey;
+    const didChooseLeft = key === (negativeLanguage ? rightKey : leftKey);
     const choice = didChooseLeft ? currentPage.images[0] : currentPage.images[1];
 
     setDollarAmounts([
@@ -39,7 +39,7 @@ const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
       prompt={[
         "Now you are Player One and have been given $1.00.",
         <br />,
-        `With which CU Boulder student do you ${negativeLanguage ? 'NOT ' : ' '}want to trust your $1.00 with?`,
+        `With which CU Boulder student do you ${negativeLanguage ? 'NOT ' : ' '}want to trust your $1.00?`,
         <br />,
         "Use the yellow 'Y' to choose the left participant and the yellow 'B' to choose the right participant."
       ]}
