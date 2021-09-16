@@ -22,7 +22,7 @@ const headers = [
     flatten,
     join(',')
   )(),
-  "Manipulation Q1, Manipulation Q2, Manipulation Q3"
+  "Manipulation Q1, Manipulation Q2, Manipulation Q3, Manipulation Q4"
 ].join(',')
 
 const trustItemToRow = trustItem => ([
@@ -42,8 +42,8 @@ const trustJSONtoRows = pipe(
   join(',')
 )
 
-const manipulationCheckRow = ({question1, question2, question3}) =>
-  [question1, question2, question3].map(man => removeCommas(man)).join(',')
+const manipulationCheckRow = ({question1, question2, question3, question4}) =>
+  [question1, question2, question3, question4].map(man => removeCommas(man)).join(',')
 
 export default ({ negativeLanguage, trustData, manipulationCheck, participantNumber }) =>
   `${headers}\n` +

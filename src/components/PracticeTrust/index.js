@@ -43,7 +43,7 @@ const PracticeLetters = ({ history, match: { url } }) => {
             <TrustQuestion
               currentPage={{images: practiceImages, letters}}
               negativeLanguage={negativeLanguage}
-              handleSubmit={({choice, selectionTime}) => {
+              handleSubmit={({choice}) => {
                 setTrustAnswer(choice);
                 stepTo('show-choice')();
               }}

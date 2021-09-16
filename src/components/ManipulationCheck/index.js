@@ -8,12 +8,14 @@ import Feedback from "./Feedback";
 import Question1 from "./Question1";
 import Question2 from "./Question2";
 import Question3 from "./Question3";
+import Question4 from "./Question4";
 
-const correctAnswers = {
+const correctAnswers = negativeLanguage => ({
   question1: "4",
   question2: "$4.00",
-  question3: "$0.00"
-};
+  question3: "$0.00",
+  question4: negativeLanguage ? "blue" : "red",
+});
 
 const ManipulationCheck = ({ history }) => {
   const [currentState, setCurrentState] = React.useState('question1');
@@ -56,15 +58,24 @@ const ManipulationCheck = ({ history }) => {
           }}
         />
       );
+    case 'question4':
+      return (
+        <Question4
+          onComplete={(answer) => {
+            setAnswer(answer, 'question4');
+            setCurrentState('feedback');
+          }}
+        />
+      );
 
     case 'feedback':
       return (
         <DataContext.Consumer>
-          {({ dispatch }) => (
+          {({ dispatch, state: {negativeLanguage} }) => (
             <Feedback
               question={lastQuestion}
               answer={answers[lastQuestion]}
-              correctAnswer={correctAnswers[lastQuestion]}
+              correctAnswer={correctAnswers(negativeLanguage)[lastQuestion]}
               onStep={() => {
                 switch(lastQuestion) {
                   case 'question1':
@@ -74,6 +85,9 @@ const ManipulationCheck = ({ history }) => {
                     setCurrentState('question3');
                     break;
                   case 'question3':
+                    setCurrentState('question4');
+                    break;
+                  case 'question4':
                     dispatch(setManipulationCheck(answers));
                     history.replace('/practice-intro');
                     break;

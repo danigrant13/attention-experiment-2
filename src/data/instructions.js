@@ -72,7 +72,7 @@ export default [[
 ], [{
     items: [
       "In the decision task there are two roles: Player One and Player Two. You will be Player One, and you will get to choose who becomes Player Two from the two CU Boulder students you are paired with.",
-      "You will be given a small sum of money. Then, you will choose which CU Student you trust more by sending them your money. The student you send money to will be Player Two. Once you send them the money, it will be multiplied into a larger amount and given to Player Two. Once you are finished with your turn, Player Two will decide how much of the money they would like to give back to you.",
+      "You will be given a small sum of money. Then, you will decide which CU Boulder student you trust more by sending them your money. The student you send money to will be Player Two. Once you send them the money, it will be multiplied into a larger amount and given to Player Two. Once you are finished with your turn, Player Two will decide how much of the money they would like to give back to you.",
       "On the next screen, there will be a diagram outlining the steps for the decision task.",
     ],
     timeout: 15000,
@@ -93,7 +93,7 @@ export default [[
   }, {
     items: [
       "Everyone in phase two of this study will be Player One.",
-      "To begin, you will be given $1.00. You will then choose who you want to send your $1.00 to. The participant you choose will become the Player Two. Your money will then be multiplied by four and placed in the Player Two’s account.",
+      "To begin, you will be given $1.00. You will then choose who you want to send your $1.00 to. The participant you trust will become the Player Two. Your money will then be multiplied by four and placed in the Player Two’s account.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     images: [DemoB],
@@ -103,7 +103,7 @@ export default [[
     items: [
       {textItems: [
         "In this example, Player One",
-        ({negativeLanguage}) => ` is asked, "With which CU Boulder student do you ${negativeLanguage ? "NOT " : " "}want to trust your $1.00?", and has chosen to ${negativeLanguage ? "NOT " : ""} trust the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
+        ({negativeLanguage}) => ` is asked, "Which CU Boulder student do you ${negativeLanguage ? "dis" : ""}trust?", and has chosen to ${negativeLanguage ? "dis" : ""}trust the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
       ]},
       {textItems: [
         ({negativeLanguage}) => `So, if you select the person on the ${negativeLanguage ? "RIGHT" : "RIGHT"} then the person on the ${negativeLanguage ? "LEFT" : "RIGHT"} will become Player Two, and if you select the person on the ${negativeLanguage ? "LEFT" : "LEFT"} then the person on the ${negativeLanguage ? "RIGHT" : "LEFT"} will become Player Two.`,
@@ -138,7 +138,7 @@ export default [[
   }, {
     items: [
       "Since there will be 25 trials, you will choose 25 other participants to become Player Two. Those 25 Player Twos will return to the lab for phase three and take part in their turn of the decision task.",
-      "Along with you, many other participants will take on the Player One roles in phase two and will be making decisions about the same previous participants. So, when the 25 Player Twos you chose return to the lab, they will likely be taking part in many Player Two roles in the decision task."
+      "Along with you, many other participants will take on the Player One roles in phase two and will be making decisions about the same previous participants. So, when the 25 Player Twos you trusted return to the lab, they will likely be taking part in many Player Two roles in the decision task."
     ],
     prompt: defaultPrompt
   }, {

@@ -39,9 +39,9 @@ const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
       prompt={[
         "Now you are Player One and have been given $1.00.",
         <br />,
-        `With which CU Boulder student do you ${negativeLanguage ? 'NOT ' : ' '}want to trust your $1.00?`,
+        `With which CU Boulder student do you ${negativeLanguage ? 'dis' : ''}trust?`,
         <br />,
-        "Use the yellow 'Y' to choose the left participant and the yellow 'B' to choose the right participant."
+        "Use the yellow 'y' to choose the left participant and the yellow 'b' to choose the right participant."
       ]}
     />
   )

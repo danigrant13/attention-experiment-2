@@ -11,3 +11,13 @@ export const Select = styled.select`
   width: 150px;
 `;
 
+export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+`;
+
+export const Image = styled.img`
+  width: 475px;
+`;

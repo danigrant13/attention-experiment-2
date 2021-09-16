@@ -68,30 +68,6 @@ import WF_74 from "../assets/females/WF_74.jpg"
 import WF_75 from "../assets/females/WF_75.jpg"
 import WF_76 from "../assets/females/WF_76.jpg"
 import WF_77 from "../assets/females/WF_77.jpg"
-import AF_1 from "../assets/females/AF_1.jpg"
-import AF_2 from "../assets/females/AF_2.jpg"
-import AF_3 from "../assets/females/AF_5.jpg"
-import AF_4 from "../assets/females/AF_5.jpg"
-import AF_5 from "../assets/females/AF_5.jpg"
-import AF_6 from "../assets/females/AF_6.jpg"
-import BF_1 from "../assets/females/BF_1.jpg"
-import BF_2 from "../assets/females/BF_2.jpg"
-import BF_3 from "../assets/females/BF_3.jpg"
-import BF_4 from "../assets/females/BF_4.jpg"
-import MEF_1 from "../assets/females/MEF_1.jpg"
-import MEF_2 from "../assets/females/MEF_2.jpg"
-import MEF_3 from "../assets/females/MEF_3.jpg"
-import MEF_4 from "../assets/females/MEF_4.jpg"
-import LF_1 from "../assets/females/LF_1.jpg"
-import LF_2 from "../assets/females/LF_2.jpg"
-import LF_3 from "../assets/females/LF_3.jpg"
-import LF_4 from "../assets/females/LF_4.jpg"
-import LF_5 from "../assets/females/LF_5.jpg"
-import LF_6 from "../assets/females/LF_6.jpg"
-import LF_7 from "../assets/females/LF_7.jpg"
-import LF_8 from "../assets/females/LF_8.jpg"
-import LF_9 from "../assets/females/LF_9.jpg"
-import LF_10 from "../assets/females/LF_10.jpg"
 import HF_1 from "../assets/females/HF_1.jpg"
 import HF_2 from "../assets/females/HF_2.jpg"
 import HF_3 from "../assets/females/HF_3.jpg"
@@ -135,18 +111,6 @@ import HM_3 from "../assets/males/HM_3.jpg"
 import HM_4 from "../assets/males/HM_4.jpg"
 import HM_5 from "../assets/males/HM_5.jpg"
 import HM_6 from "../assets/males/HM_6.jpg"
-import AM_1 from "../assets/males/AM_1.jpg"
-import AM_2 from "../assets/males/AM_2.jpg"
-import LM_1 from "../assets/males/LM_1.jpg"
-import LM_2 from "../assets/males/LM_2.jpg"
-import LM_3 from "../assets/males/LM_3.jpg"
-import LM_4 from "../assets/males/LM_4.jpg"
-import MEM_1 from "../assets/males/MEM_1.jpg"
-import MEM_2 from "../assets/males/MEM_2.jpg"
-import MEM_3 from "../assets/males/MEM_3.jpg"
-import MEM_4 from "../assets/males/MEM_4.jpg"
-import MEM_5 from "../assets/males/MEM_5.jpg"
-import MEM_6 from "../assets/males/MEM_6.jpg"
 
 import StimRandomizer from "../utils/StimRandomizer"
 
@@ -227,42 +191,6 @@ export default new StimRandomizer([
     WF_74,
     WF_75,
     // WF_78 // Odd numbers not supported
-  ], [
-    // Asian Females
-    AF_1,
-    AF_2,
-    AF_3,
-    AF_4,
-    AF_5,
-    AF_6,
-    // AF_7 // Odd numbers not supported
-  ], [
-    // Black Females
-    BF_1,
-    BF_2,
-    BF_3,
-    BF_4
-  ], [
-    // Middle Eastern Females
-    MEF_1,
-    MEF_2,
-    MEF_3,
-    MEF_4
-  ], [
-    // Latin Females
-    LF_1,
-    LF_2,
-    LF_3,
-    LF_4,
-    LF_5,
-    LF_6,
-    LF_7,
-    LF_8,
-    LF_9,
-    LF_10,
-    // LF_11 // Odd numbers not suppoted
-  ], [
-    // Hazey Females
     HF_1,
     HF_2,
     HF_3,
@@ -302,33 +230,12 @@ export default new StimRandomizer([
     WM_32,
     WM_33,
     WM_34,
-    // WM_35 // Odd numbers not suppoted
-  ], [
-    // Hazey Males
+    // WM_35 // Odd numbers not supported,
     HM_1,
     HM_2,
     HM_3,
     HM_4,
     HM_5,
     HM_6
-  ], [
-    // Asian Males
-    AM_1,
-    AM_2
-    //AM_3 // Odd numbers not supported
-  ], [
-     // Latin Males
-     LM_1,
-     LM_2,
-     LM_3,
-     LM_4
-  ],  [
-    // Middle Eastern Males
-    MEM_1,
-    MEM_2,
-    MEM_3,
-    MEM_4,
-    MEM_5,
-    MEM_6
-  ]
+  ],
 ]);
