@@ -31,6 +31,16 @@ export const sampleWithoutReplacement = (array, count) => {
   return uniq(shuffle(array)).slice(0, count);
 }
 
+export const sample = (array, count) => {
+  const sample = [];
+
+  for (let i = 0; i < count; i++) {
+   sample.push(array[Math.floor(Math.random() * array.length)]);
+  }
+
+  return sample;
+};
+
 export const sampleWithReplacement = (array, count, weights) => {
   let normalized_weights = null;
 

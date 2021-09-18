@@ -1,4 +1,4 @@
-import { sampleWithReplacement, sampleWithoutReplacement } from "./random";
+import { sample, sampleWithoutReplacement } from "./random";
 
 class Bucket {
   constructor(array, weight) {
@@ -13,6 +13,7 @@ class Bucket {
   filter(callback) {
     return this._array.filter(callback);
   }
+
   setWeight(newWeight) {
     this.weight = newWeight;
   }
@@ -23,24 +24,24 @@ class Bucket {
     });
   }
 
-  sample() {
-    const sample = sampleWithoutReplacement(this._array, 2);
+  sample(count) {
+    const sample = sampleWithoutReplacement(this._array, count);
     this.removeSample(sample);
     return sample;
   }
 };
 
 class StimuliRandomizer {
-  constructor(stimuli) {
+  constructor(stimuli, sampleSize = 2) {
     this.weightTotal = stimuli.reduce((acc, bucketArray) => acc + bucketArray.length, 0);
-
+    this.sampleSize = sampleSize;
     this._stimuli = stimuli.map((bucketArray) => (
       new Bucket(bucketArray, bucketArray.length / this.weightTotal)
     ));
   };
 
   sample() {
-    return sampleWithReplacement(this._stimuli, 1, this.getWeights())[0];
+    return sample(this._stimuli, 1)[0];
   }
 
   getWeights() {
@@ -54,8 +55,13 @@ class StimuliRandomizer {
   };
 
   getSample() {
-    const bucket = this.sample();
-    const sample = bucket.sample();
+    let bucket;
+
+    do {
+      bucket = this.sample()
+    } while (bucket.length < this.sampleSize)
+
+    const sample = bucket.sample(this.sampleSize);
     this.weightTotal -= sample.length;
     this.calculateWeight();
     return sample; 
