@@ -5,9 +5,7 @@ import WF_4 from "../assets/females/WF_4.jpg"
 import WF_5 from "../assets/females/WF_5.jpg"
 import WF_6 from "../assets/females/WF_6.jpg"
 import WF_7 from "../assets/females/WF_7.jpg"
-import WF_8 from "../assets/females/WF_7.jpg"
-import WF_9 from "../assets/females/WF_7.jpg"
-import WF_10 from "../assets/females/WF_11.jpg"
+import WF_11 from "../assets/females/WF_11.jpg"
 import WF_12 from "../assets/females/WF_12.jpg"
 import WF_13 from "../assets/females/WF_13.jpg"
 import WF_14 from "../assets/females/WF_14.jpg"
@@ -35,7 +33,6 @@ import WF_37 from "../assets/females/WF_37.jpg"
 import WF_38 from "../assets/females/WF_38.jpg"
 import WF_39 from "../assets/females/WF_39.jpg"
 import WF_41 from "../assets/females/WF_41.jpg"
-import WF_42 from "../assets/females/WF_42.jpg"
 import WF_43 from "../assets/females/WF_43.jpg"
 import WF_44 from "../assets/females/WF_44.jpg"
 import WF_45 from "../assets/females/WF_45.jpg"
@@ -68,12 +65,7 @@ import WF_74 from "../assets/females/WF_74.jpg"
 import WF_75 from "../assets/females/WF_75.jpg"
 import WF_76 from "../assets/females/WF_76.jpg"
 import WF_77 from "../assets/females/WF_77.jpg"
-import HF_1 from "../assets/females/HF_1.jpg"
-import HF_2 from "../assets/females/HF_2.jpg"
-import HF_3 from "../assets/females/HF_3.jpg"
-import HF_4 from "../assets/females/HF_4.jpg"
-import HF_5 from "../assets/females/HF_5.jpg"
-import HF_6 from "../assets/females/HF_6.jpg"
+
 import WM_1 from "../assets/males/WM_1.jpg"
 import WM_2 from "../assets/males/WM_2.jpg"
 import WM_3 from "../assets/males/WM_3.jpg"
@@ -102,15 +94,8 @@ import WM_27 from "../assets/males/WM_27.jpg"
 import WM_28 from "../assets/males/WM_28.jpg"
 import WM_29 from "../assets/males/WM_29.jpg"
 import WM_31 from "../assets/males/WM_31.jpg"
-import WM_32 from "../assets/males/WM_32.jpg"
 import WM_33 from "../assets/males/WM_33.jpg"
 import WM_34 from "../assets/males/WM_34.jpg"
-import HM_1 from "../assets/males/HM_1.jpg"
-import HM_2 from "../assets/males/HM_2.jpg"
-import HM_3 from "../assets/males/HM_3.jpg"
-import HM_4 from "../assets/males/HM_4.jpg"
-import HM_5 from "../assets/males/HM_5.jpg"
-import HM_6 from "../assets/males/HM_6.jpg"
 
 import StimRandomizer from "../utils/StimRandomizer"
 
@@ -121,121 +106,47 @@ export const practiceImages = [
 
 export default new StimRandomizer([
   [
-    // White Females
-    WF_1,
-    WF_2,
-    WF_3,
-    WF_4,
-    WF_5,
-    WF_6,
-    WF_7,
-    WF_8,
-    WF_9,
-    WF_10,
-    WF_12,
-    WF_13,
-    WF_14,
-    WF_15,
-    WF_16,
-    WF_17,
-    WF_18,
-    WF_19,
-    WF_21,
-    WF_22,
-    WF_23,
-    WF_24,
-    WF_25,
-    WF_26,
-    WF_27,
-    WF_28,
-    WF_29,
-    WF_31,
-    WF_32,
-    WF_33,
-    WF_34,
-    WF_35,
-    WF_36,
-    WF_37,
-    WF_38,
-    WF_39,
-    WF_41,
-    WF_42,
-    WF_43,
-    WF_44,
-    WF_45,
-    WF_46,
-    WF_47,
-    WF_48,
-    WF_49,
-    WF_51,
-    WF_52,
-    WF_53,
-    WF_54,
-    WF_55,
-    WF_56,
-    WF_57,
-    WF_58,
-    WF_59,
-    WF_61,
-    WF_62,
-    WF_63,
-    WF_64,
-    WF_65,
-    WF_66,
-    WF_67,
-    WF_68,
-    WF_69,
-    WF_71,
-    WF_72,
-    WF_73,
-    WF_74,
-    WF_75,
-    // WF_78 // Odd numbers not supported
-    HF_1,
-    HF_2,
-    HF_3,
-    HF_4,
-    HF_5,
-    HF_6
-  ], [
-    // White Males
-    WM_1,
-    WM_2,
-    WM_3,
-    WM_4,
-    WM_5,
-    WM_6,
-    WM_7,
-    WM_8,
-    WM_9,
-    WM_10,
-    WM_12,
-    WM_13,
-    WM_14,
-    WM_15,
-    WM_16,
-    WM_17,
-    WM_18,
-    WM_19,
-    WM_21,
-    WM_22,
-    WM_23,
-    WM_24,
-    WM_25,
-    WM_26,
-    WM_27,
-    WM_28,
-    WM_29,
-    WM_31,
-    WM_32,
-    WM_33,
-    WM_34,
-    // WM_35 // Odd numbers not supported,
-    HM_1,
-    HM_2,
-    HM_3,
-    HM_4,
-    HM_5,
-    HM_6
+    // Females Group 1
+    WF_1, WF_12, WF_18, WF_28, WF_32, WF_41, WF_48,  WF_6, WF_67, WF_71 
+  ],
+  [
+    // Females Group 2
+    WF_11, WF_22, WF_25, WF_29, WF_33,  WF_5, WF_54, WF_58, WF_65, WF_73 
+  ],
+  [
+    // Females Group 3
+    WF_16, WF_21,  WF_3, WF_36,  WF_4, WF_47, WF_52, WF_56, WF_59, WF_62, WF_69, WF_72 
+  ],
+  [
+    // Females Group 4
+    WF_14, WF_15, WF_17, WF_2, WF_23, WF_31, WF_37, WF_38, WF_45, WF_53, WF_63, WF_64, WF_74 
+  ],
+  [
+    // Females Group 5
+    WF_19, WF_26, WF_27, WF_34, WF_35, WF_39, WF_43, WF_44, WF_49, WF_55, WF_57, WF_61, WF_66 
+  ],
+  [
+    // Females Group 6
+    WF_13, WF_51, WF_68, WF_7, WF_75
+  ],
+  [
+    // Females Group 7
+    WF_24, WF_46 
+  ],
+  [
+    // Males group 1
+    WM_1, WM_13, WM_2, WM_22, WM_24, WM_33,  WM_6, WM_8 
+  ],
+  [
+    // Males group 2
+    WM_10, WM_14, WM_23, WM_29, WM_3, WM_34,  WM_7, WM_9 
+  ],
+  [
+    // Males group 3
+    WM_16, WM_19, WM_21, WM_25, WM_26, WM_28, WM_4, WM_5 
+  ],
+  [
+    // Males group 4
+    WM_12, WM_15, WM_17, WM_18, WM_27, WM_31 
   ],
 ]);
