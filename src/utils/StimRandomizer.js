@@ -59,8 +59,7 @@ class StimuliRandomizer {
 
     do {
       bucket = this.sample()
-    } while (bucket.length < this.sampleSize)
-
+    } while (bucket.length() < this.sampleSize)
     const sample = bucket.sample(this.sampleSize);
     this.weightTotal -= sample.length;
     this.calculateWeight();

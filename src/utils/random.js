@@ -35,10 +35,16 @@ export const sample = (array, count) => {
   const sample = [];
 
   for (let i = 0; i < count; i++) {
-   sample.push(array[Math.floor(Math.random() * array.length)]);
+    let index;
+
+    do {
+      index = Math.floor(Math.random() * array.length);
+    } while (sample.includes(index))
+
+    sample.push(index);
   }
 
-  return sample;
+  return sample.map(val => array[val]);
 };
 
 export const sampleWithReplacement = (array, count, weights) => {
