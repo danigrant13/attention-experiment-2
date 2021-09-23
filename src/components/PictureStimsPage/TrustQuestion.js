@@ -13,6 +13,7 @@ const rightKey = "b";
 const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
   const startRef = React.useRef(new Date());
   const [dollarAmounts, setDollarAmounts] = React.useState([zeroDollars, "$1.00", zeroDollars])
+  const [{ choiceMade, choseLeft }, setChoiceMade] = React.useState({ choiceMade: false, choseLeft: false });
 
   useKeyPress([leftKey, rightKey], (key) => {
     const selectionTime = elapsedTime(startRef.current, new Date());
@@ -23,7 +24,8 @@ const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
       didChooseLeft ? fourDollars : zeroDollars,
       zeroDollars,
       didChooseLeft ? zeroDollars : fourDollars
-    ])
+    ]);
+    setChoiceMade({ choiceMade: true, choseLeft: didChooseLeft });
 
     setTimeout(() => {
       handleSubmit({ choice, selectionTime});
@@ -34,8 +36,8 @@ const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
     <TrustQuestionLayout
       images={currentPage.images}
       dollarAmounts={dollarAmounts}
-      showLeft={true}
-      showRight={true}
+      showLeft={choiceMade ? choseLeft : true}
+      showRight={choiceMade ? !choseLeft : true}
       prompt={[
         "Now you are Player One and have been given $1.00.",
         <br />,
