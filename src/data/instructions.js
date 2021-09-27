@@ -6,7 +6,9 @@ import DemoCNegative from "../assets/demo_c_negative.jpg";
 import DemoLetters from "../assets/demo_letters.jpg";
 import ExperimentOverview from "../assets/experiment_overview.jpg";
 import TrustOverview1 from "../assets/trust_overview_1.jpg";
+import DistrustOverview1 from "../assets/distrust_overview_1.jpg";
 import TrustOverview2 from "../assets/trust_overview_2.jpg";
+import DistrustOverview2 from "../assets/distrust_overview_2.jpg";
 
 const defaultPrompt = "Press ENTER to continue."
 
@@ -14,7 +16,7 @@ export default [[
   {
     items: [
       `The purpose of this study is to examine how people make social decisions while engaging in other cognitive tasks. There are three phases in this study; You are participating in the second phase.`,
-      `Last semester, during phase one, CU Boulder students came into the lab and we took their photos. You will see their photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
+      `Recently, during phase one, CU Boulder students came into the lab and we took their photos. You will see their photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
       `On the next slide there will be a diagram outlining the phases of this study.`
     ],
     timeout: 10000,
@@ -72,13 +74,20 @@ export default [[
 ], [{
     items: [
       "In the decision task there are two roles: Player One and Player Two. You will be Player One, and you will get to choose who becomes Player Two from the two CU Boulder students you are paired with.",
-      "You will be given a small sum of money. Then, you will decide which CU Boulder student you trust more by sending them your money. The student you send money to will be Player Two. Once you send them the money, it will be multiplied into a larger amount and given to Player Two. Once you are finished with your turn, Player Two will decide how much of the money they would like to give back to you.",
-      "On the next screen, there will be a diagram outlining the steps for the decision task.",
+      "You will be given a small sum of money. You will choose which CU Boulder student you trust more. Then you will give them money. That student will become Player Two. Once you are finished with you turn, Player Two will later decide how much of the mony, if any, they would like to give back to you.",
+      {
+        textItems: [
+          "Importantly, as Player One, you will identify which student you ",
+          ({negativeLanguage}) =>
+            `${ negativeLanguage ? 'dis' : '' }trust and then send ${negativeLanguage ? 'the other' : 'that'}  student your money.`
+        ],
+      },
+      "On the next screen, there will be a diagram outlining the steps for the decision task."
     ],
     timeout: 15000,
     prompt: defaultPrompt,
   }, {
-    fullPageImage: TrustOverview1,
+    fullPageImage: ({negativeLanguage}) => negativeLanguage ? DistrustOverview1 : TrustOverview1,
     timeout: 20000,
     prompt: defaultPrompt,
   }, {
@@ -123,12 +132,12 @@ export default [[
     timeout: 20000,
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
-    fullPageImage: TrustOverview2,
+    fullPageImage: ({negativeLanguage}) => negativeLanguage ? DistrustOverview2 : TrustOverview2,
     timeout: 20000,
     prompt: defaultPrompt,
   }, {
-    items: ["Let's do a practice trial to orient you to the task."],
-    prompt: "Press ENTER to begin the practice trial."
+    items: ["Let's do two example trials to orient you to the task."],
+    prompt: "Press ENTER to begin the first example trial."
   }
 ], [{
     items: [

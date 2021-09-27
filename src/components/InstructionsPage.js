@@ -68,14 +68,14 @@ const renderTextInstruction = (instruction, context) => {
 
 const proceedLocations = ['/practice-letters', '/practice-trust', '/manipulation-check'];
 
-const InstructionsPage = ({history, match: { path, params: {group, page} }}) => {
+const InstructionsPage = ({history, match: { params: {group, page} }}) => {
   const intGroup = parseInt(group);
   const intPage = parseInt(page);
   const instructions = INSTRUCTIONS[intGroup];
   const numInstructions = instructions.length - 1;
   const currentPage = instructions[intPage];
 
-  const denyProgress = !useAfterTimeout(currentPage.timeout || 0);
+  const denyProgress = !useAfterTimeout(0);
   const prompt = denyProgress ? "" : currentPage.prompt;
   useKeyPress(["Enter"], () => {
     if (denyProgress) {
@@ -89,10 +89,16 @@ const InstructionsPage = ({history, match: { path, params: {group, page} }}) => 
   });
 
   if (isPresent(currentPage.fullPageImage)) {
+    const image = currentPage.fullPageImage;
+
     return (
-      <Instructions prompt={prompt}>
-        <FullPageImage alt="Image" src={currentPage.fullPageImage} />
-      </Instructions>
+      <DataContext.Consumer>
+        {({ state }) => (
+          <Instructions prompt={prompt}>
+            <FullPageImage alt="Image" src={isFunction(image) ? image(state) : image} />
+          </Instructions>
+        )}
+      </DataContext.Consumer>
     );
   }
 
@@ -100,7 +106,7 @@ const InstructionsPage = ({history, match: { path, params: {group, page} }}) => 
     <DataContext.Consumer>
       {({ state }) => (
         <Instructions prompt={prompt}>
-          {currentPage.items.map((instruction, i) => <P>{renderTextInstruction(instruction, state)}</P>)}
+          {currentPage.items.map((instruction) => <P>{renderTextInstruction(instruction, state)}</P>)}
           {isPresent(currentPage.images) && (
             <ImagesWrapper>
               {currentPage.images.map((image, i) =>

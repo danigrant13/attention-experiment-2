@@ -5,9 +5,10 @@ import useKeyPress from "../../hooks/useKeyPress";
 import TrustQuestionLayout from "../ui/TrustQuestionLayout";
 
 const zeroDollars = "$0.00";
+const twoDollars = "$2.00";
 const fourDollars = "$4.00";
 
-const ShowChoice = ({ images, isLeft, onStep }) => {
+const ShowPlayerTwo = ({ images, isLeft, onStep, round }) => {
   useKeyPress(["Enter"], onStep);
 
   return (
@@ -21,7 +22,8 @@ const ShowChoice = ({ images, isLeft, onStep }) => {
       ]}
       images={images}
       prompt={[
-        "This is the participant you chose to trust. When they come back to the lab later they will decide whether to give none, some, or all the money you trusted them with back to you.",
+        `For example, imagine that when this Player Two came back to the lab, they chose to give you ${round === 1 ? zeroDollars : twoDollars} back.`,
+        `They are ${round === 1 ? 'not' : ''} trustworthy.`,
         <br />,
         "Press ENTER to continue."
       ]}
@@ -29,4 +31,4 @@ const ShowChoice = ({ images, isLeft, onStep }) => {
   );
 };
 
-export default ShowChoice;
+export default ShowPlayerTwo;
