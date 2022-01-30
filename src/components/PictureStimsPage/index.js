@@ -1,45 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import imageStims from "../../data/imageStims";
-import { coinFlip, sampleWithoutReplacement, shuffle } from "../../utils/random";
 import reducer, { genInitialValues, setSelection } from "./store";
 
-import {DataContext, setTrustRow} from "../../App";
+import { DataContext, setTrustRow } from "../../App";
 import DisplayDirection from "./DisplayDirection";
 import ExitQuestions from "./ExitQuestions";
 import Feedback from "./Feedback";
 import LetterStim from "./LetterStim";
 import TrustQuestion from "./TrustQuestion";
-
-const lettersNoX = [
-  'A','B','C','D','E',
-  'F','G','H','I','J',
-  'K','L','M','N','O',
-  'P','Q','R','S','T',
-  'U','V','W','Y','Z'
-];
-
-const randomLetters = () => {
-  let xToAdd = [];
-  let withXLetters = shuffle(lettersNoX);
-  if (Math.random() <= 0.2) {
-      xToAdd = sampleWithoutReplacement([['X'], ['X', 'X']], 1)[0];
-  }
-  withXLetters = sampleWithoutReplacement(withXLetters, 20);
-  xToAdd.forEach(function() { withXLetters.shift() });
-  return shuffle(withXLetters.concat(xToAdd));
-};
-
-const PAGES = [];
-for (let i = 0; i < 28; i++) {
-  PAGES.push({
-    images: imageStims.getSample(),
-    letters: randomLetters(),
-    letterPosition: (coinFlip() ? "<" : ">"),
-  })
-}
-
-const NUM_PAGES = PAGES.length
 
 const PictureStimsPage = ({history, match: { params: { page } } }) => {
   const pageIndex = parseInt(page);
@@ -94,20 +62,24 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
       );
     case "feedback":
       return (
-        <Feedback
-          currentPage={currentPage}
-          page={pageIndex}
-          trustState={trustState}
-          handleSubmit={() => {
-            if (pageIndex === NUM_PAGES - 1) {
-              history.replace('/thank-you');
-            } else if (pageIndex === 2) {
-              history.replace('/experiment-intro');
-            } else {
-              history.replace(`/trust-games/${pageIndex + 1}`);
-            }
-          }}
-        />
+        <DataContext.Consumer>
+          {({ pages }) => (
+            <Feedback
+              currentPage={currentPage}
+              page={pageIndex}
+              trustState={trustState}
+              handleSubmit={() => {
+                if (pageIndex === pages.length - 1) {
+                  history.replace('/thank-you');
+                } else if (pageIndex === 2) {
+                  history.replace('/experiment-intro');
+                } else {
+                  history.replace(`/trust-games/${pageIndex + 1}`);
+                }
+              }}
+            />
+          )}
+        </DataContext.Consumer>
       );
     default:
       return <div />;

@@ -99,54 +99,164 @@ import WM_34 from "../assets/males/WM_34.jpg"
 
 import StimRandomizer from "../utils/StimRandomizer"
 
-export const practiceImages = [
-  [WF_76, WF_77],
-  [WF_64, WF_74],
+export default [
+  new StimRandomizer(
+    'faces',
+    // practice images
+    [
+      [WF_76, WF_77],
+      [WF_64, WF_74],
+    ],
+    // experimental images
+    [
+      [
+        // Females Group 1
+        WF_1, WF_12, WF_18, WF_28, WF_32, WF_41, WF_48,  WF_6, WF_67, WF_71
+      ],
+      [
+        // Females Group 2
+        WF_11, WF_22, WF_25, WF_29, WF_33,  WF_5, WF_54, WF_58, WF_65, WF_73
+      ],
+      [
+        // Females Group 3
+        WF_16, WF_21,  WF_3, WF_36,  WF_4, WF_47, WF_52, WF_56, WF_59, WF_62, WF_69, WF_72
+      ],
+      [
+        // Females Group 4
+        WF_14, WF_15, WF_17, WF_2, WF_23, WF_31, WF_37, WF_38, WF_45, WF_53, WF_63
+      ],
+      [
+        // Females Group 5
+        WF_19, WF_26, WF_27, WF_34, WF_35, WF_39, WF_43, WF_44, WF_49, WF_55, WF_57, WF_61, WF_66
+      ],
+      [
+        // Females Group 6
+        WF_13, WF_51, WF_68, WF_7, WF_75
+      ],
+      [
+        // Females Group 7
+        WF_24, WF_46 
+      ],
+      [
+        // Males group 1
+        WM_1, WM_13, WM_2, WM_22, WM_24, WM_33,  WM_6, WM_8
+      ],
+      [
+        // Males group 2
+        WM_10, WM_14, WM_23, WM_29, WM_3, WM_34,  WM_7, WM_9
+      ],
+      [
+        // Males group 3
+        WM_16, WM_19, WM_21, WM_25, WM_26, WM_28, WM_4, WM_5
+      ],
+      [
+        // Males group 4
+        WM_12, WM_15, WM_17, WM_18, WM_27, WM_31
+      ],
+    ],
+  ),
+  new StimRandomizer(
+    'blurryFaces',
+    // practice images
+    [[], []],
+    // experimental images
+    [
+      [
+        // Females Group 1
+        WF_1, WF_12, WF_18, WF_28, WF_32, WF_41, WF_48,  WF_6, WF_67, WF_71
+      ],
+      [
+        // Females Group 2
+        WF_11, WF_22, WF_25, WF_29, WF_33,  WF_5, WF_54, WF_58, WF_65, WF_73
+      ],
+      [
+        // Females Group 3
+        WF_16, WF_21,  WF_3, WF_36,  WF_4, WF_47, WF_52, WF_56, WF_59, WF_62, WF_69, WF_72
+      ],
+      [
+        // Females Group 4
+        WF_14, WF_15, WF_17, WF_2, WF_23, WF_31, WF_37, WF_38, WF_45, WF_53, WF_63
+      ],
+      [
+        // Females Group 5
+        WF_19, WF_26, WF_27, WF_34, WF_35, WF_39, WF_43, WF_44, WF_49, WF_55, WF_57, WF_61, WF_66
+      ],
+      [
+        // Females Group 6
+        WF_13, WF_51, WF_68, WF_7, WF_75
+      ],
+      [
+        // Females Group 7
+        WF_24, WF_46 
+      ],
+      [
+        // Males group 1
+        WM_1, WM_13, WM_2, WM_22, WM_24, WM_33,  WM_6, WM_8
+      ],
+      [
+        // Males group 2
+        WM_10, WM_14, WM_23, WM_29, WM_3, WM_34,  WM_7, WM_9
+      ],
+      [
+        // Males group 3
+        WM_16, WM_19, WM_21, WM_25, WM_26, WM_28, WM_4, WM_5
+      ],
+      [
+        // Males group 4
+        WM_12, WM_15, WM_17, WM_18, WM_27, WM_31
+      ],
+    ],
+  ),
+  new StimRandomizer(
+    'blackBoxes',
+    // practice images
+    [[], []],
+    // experimental images
+    [
+      [
+        // Females Group 1
+        WF_1, WF_12, WF_18, WF_28, WF_32, WF_41, WF_48,  WF_6, WF_67, WF_71
+      ],
+      [
+        // Females Group 2
+        WF_11, WF_22, WF_25, WF_29, WF_33,  WF_5, WF_54, WF_58, WF_65, WF_73
+      ],
+      [
+        // Females Group 3
+        WF_16, WF_21,  WF_3, WF_36,  WF_4, WF_47, WF_52, WF_56, WF_59, WF_62, WF_69, WF_72
+      ],
+      [
+        // Females Group 4
+        WF_14, WF_15, WF_17, WF_2, WF_23, WF_31, WF_37, WF_38, WF_45, WF_53, WF_63
+      ],
+      [
+        // Females Group 5
+        WF_19, WF_26, WF_27, WF_34, WF_35, WF_39, WF_43, WF_44, WF_49, WF_55, WF_57, WF_61, WF_66
+      ],
+      [
+        // Females Group 6
+        WF_13, WF_51, WF_68, WF_7, WF_75
+      ],
+      [
+        // Females Group 7
+        WF_24, WF_46 
+      ],
+      [
+        // Males group 1
+        WM_1, WM_13, WM_2, WM_22, WM_24, WM_33,  WM_6, WM_8
+      ],
+      [
+        // Males group 2
+        WM_10, WM_14, WM_23, WM_29, WM_3, WM_34,  WM_7, WM_9
+      ],
+      [
+        // Males group 3
+        WM_16, WM_19, WM_21, WM_25, WM_26, WM_28, WM_4, WM_5
+      ],
+      [
+        // Males group 4
+        WM_12, WM_15, WM_17, WM_18, WM_27, WM_31
+      ],
+    ],
+  ),
 ];
-
-export default new StimRandomizer([
-  [
-    // Females Group 1
-    WF_1, WF_12, WF_18, WF_28, WF_32, WF_41, WF_48,  WF_6, WF_67, WF_71
-  ],
-  [
-    // Females Group 2
-    WF_11, WF_22, WF_25, WF_29, WF_33,  WF_5, WF_54, WF_58, WF_65, WF_73
-  ],
-  [
-    // Females Group 3
-    WF_16, WF_21,  WF_3, WF_36,  WF_4, WF_47, WF_52, WF_56, WF_59, WF_62, WF_69, WF_72
-  ],
-  [
-    // Females Group 4
-    WF_14, WF_15, WF_17, WF_2, WF_23, WF_31, WF_37, WF_38, WF_45, WF_53, WF_63
-  ],
-  [
-    // Females Group 5
-    WF_19, WF_26, WF_27, WF_34, WF_35, WF_39, WF_43, WF_44, WF_49, WF_55, WF_57, WF_61, WF_66
-  ],
-  [
-    // Females Group 6
-    WF_13, WF_51, WF_68, WF_7, WF_75
-  ],
-  [
-    // Females Group 7
-    WF_24, WF_46 
-  ],
-  [
-    // Males group 1
-    WM_1, WM_13, WM_2, WM_22, WM_24, WM_33,  WM_6, WM_8
-  ],
-  [
-    // Males group 2
-    WM_10, WM_14, WM_23, WM_29, WM_3, WM_34,  WM_7, WM_9
-  ],
-  [
-    // Males group 3
-    WM_16, WM_19, WM_21, WM_25, WM_26, WM_28, WM_4, WM_5
-  ],
-  [
-    // Males group 4
-    WM_12, WM_15, WM_17, WM_18, WM_27, WM_31
-  ],
-]);

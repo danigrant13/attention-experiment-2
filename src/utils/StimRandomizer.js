@@ -32,13 +32,27 @@ class Bucket {
 };
 
 class StimuliRandomizer {
-  constructor(stimuli, sampleSize = 2) {
+  constructor(name, practiceStimuli, stimuli, sampleSize = 2) {
+    this.name = name;
+    this.practiceStimuli = practiceStimuli;
     this.weightTotal = stimuli.reduce((acc, bucketArray) => acc + bucketArray.length, 0);
     this.sampleSize = sampleSize;
     this._stimuli = stimuli.map((bucketArray) => (
       new Bucket(bucketArray, bucketArray.length / this.weightTotal)
     ));
   };
+
+  firstPractice() {
+    return this.practiceAt(0);
+  }
+
+  secondPractice() {
+    return this.practiceAt(1);
+  }
+
+  practiceAt(index) {
+    return this.practiceStimuli[index];
+  }
 
   sample() {
     return sample(this._stimuli, 1)[0];

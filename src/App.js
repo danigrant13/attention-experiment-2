@@ -3,8 +3,8 @@ import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
 import {pathOr} from "ramda";
 
-import {coinFlip} from "./utils/random";
-
+import { coinFlip, sampleWithoutReplacement, shuffle } from "../../utils/random";
+import imageStims from 'data/imageStims'
 import ExperimentIntro from "./components/ExperimentIntro";
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
@@ -31,6 +31,37 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const lettersNoX = [
+  'A','B','C','D','E',
+  'F','G','H','I','J',
+  'K','L','M','N','O',
+  'P','Q','R','S','T',
+  'U','V','W','Y','Z'
+];
+
+const randomLetters = () => {
+  let xToAdd = [];
+  let withXLetters = shuffle(lettersNoX);
+  if (Math.random() <= 0.2) {
+      xToAdd = sampleWithoutReplacement([['X'], ['X', 'X']], 1)[0];
+  }
+  withXLetters = sampleWithoutReplacement(withXLetters, 20);
+  xToAdd.forEach(function() { withXLetters.shift() });
+  return shuffle(withXLetters.concat(xToAdd));
+};
+
+// GET a random image stim from faces, blurryFaces, or blackBoxes
+const IMAGE_STIMS = imageStims[Math.floor(Math.random() * 3)];
+
+const PAGES = [];
+for (let i = 0; i < 28; i++) {
+  PAGES.push({
+    images: IMAGE_STIMS.getSample(),
+    letters: randomLetters(),
+    letterPosition: (coinFlip() ? "<" : ">"),
+  })
+};
+
 export const DataContext = React.createContext(null);
 
 const reducer = (state, action) => {
@@ -47,7 +78,7 @@ const reducer = (state, action) => {
 };
 
 const initialValues = {
-  negativeLanguage: coinFlip() ? true : false,
+  negativeLanguage: false,
   trustData: [],
   manipulationCheck: {},
 };
@@ -71,7 +102,7 @@ const App = () => {
   const [state, dispatch] = React.useReducer(reducer, initialValues);
 
   return (
-    <DataContext.Provider value={{ state, dispatch }}>
+    <DataContext.Provider value={{ state, dispatch, pages: PAGES }}>
       <GlobalStyle />
       <Switch>
         <Route exact path="/" component={ParticipantNumberPage} />
