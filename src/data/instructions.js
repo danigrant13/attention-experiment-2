@@ -12,7 +12,7 @@ import DistrustOverview2 from "../assets/distrust_overview_2.jpg";
 
 const defaultPrompt = "Press ENTER to continue."
 
-export default [[
+const instructions = [[
   {
     items: [
       `The purpose of this study is to examine how people make social decisions while engaging in other cognitive tasks. There are three phases in this study; You are participating in the second phase.`,
@@ -157,3 +157,5 @@ export default [[
     prompt: defaultPrompt
   }
 ]];
+
+export default instructions;

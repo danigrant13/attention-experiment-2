@@ -36,10 +36,12 @@ const EndingScreen = ({ data, data: { participantNumber } }) => {
   );
 };
 
-export default () => (
+const Wrapper = () => (
   <DataContext.Consumer>
     {({ state }) => (
       <EndingScreen data={state} />
     )}
   </DataContext.Consumer>
 );
+
+export default Wrapper;

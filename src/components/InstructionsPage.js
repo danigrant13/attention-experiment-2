@@ -75,7 +75,7 @@ const InstructionsPage = ({history, match: { params: {group, page} }}) => {
   const numInstructions = instructions.length - 1;
   const currentPage = instructions[intPage];
 
-  const denyProgress = !useAfterTimeout(currentPage.timeout || 0);
+  const denyProgress = !useAfterTimeout(0); //currentPage.timeout || 0);
   const prompt = denyProgress ? "" : currentPage.prompt;
   useKeyPress(["Enter"], () => {
     if (denyProgress) {
