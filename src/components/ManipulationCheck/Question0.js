@@ -37,4 +37,4 @@ const Question0 = ({ onComplete }) => {
   );
 };
 
-export default Question1;
+export default Question0;

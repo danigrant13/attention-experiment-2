@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 
+import { DataContext } from "../../App";
 import Page from "../ui/Page";
 import {P, Select} from "./ui";
 
 import { isPresent } from "../../utils/presence";
 
 const Question3 = ({ onComplete }) => {
+  const { stimRandomizer } = useContext(DataContext);
   const [answer, setAnswer] = React.useState(null);
 
   React.useEffect(() => {
