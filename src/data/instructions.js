@@ -1,14 +1,38 @@
 import DemoImage1 from "../assets/demo_image_1.png";
 import DemoA from "../assets/demo_a.jpg";
 import DemoB from "../assets/demo_b.jpg";
-import DemoCPositive from "../assets/demo_c_positive.jpg";
-import DemoCNegative from "../assets/demo_c_negative.jpg";
+import DemoC from "../assets/demo_c.jpg";
+import DemoABB from "../assets/demo_a_bb.png";
+import DemoBBB from "../assets/demo_b_bb.png";
+import DemoCBB from "../assets/demo_c_bb.png";
 import DemoLetters from "../assets/demo_letters.jpg";
-import ExperimentOverview from "../assets/experiment_overview.jpg";
-import TrustOverview1 from "../assets/trust_overview_1.jpg";
-import DistrustOverview1 from "../assets/distrust_overview_1.jpg";
-import TrustOverview2 from "../assets/trust_overview_2.jpg";
-import DistrustOverview2 from "../assets/distrust_overview_2.jpg";
+import ExperimentOverviewFace from "../assets/select_overview_face_1.png";
+import TrustOverview1Face from "../assets/select_overview_face_2.png";
+import TrustOverview2Face from "../assets/select_overview_face_3.png";
+
+import ExperimentOverviewBlur from "../assets/select_overview_blur_1.png";
+import TrustOverview1Blur from "../assets/select_overview_blur_2.png";
+import TrustOverview2Blur from "../assets/select_overview_blur_3.png";
+import ExperimentOverviewBB from "../assets/select_overview_bb_1.png";
+import TrustOverview1BB from "../assets/select_overview_bb_2.png";
+import TrustOverview2BB from "../assets/select_overview_bb_3.png";
+
+
+const EXPERIMENT_OVERVIEW = {
+  faces: ExperimentOverviewFace,
+  blurryFaces: ExperimentOverviewBlur,
+  blackBoxes: ExperimentOverviewBB,
+}
+const TRUST_OVERVIEW1 = {
+  faces: TrustOverview1Face,
+  blurryFaces: TrustOverview1Blur,
+  blackBoxes: TrustOverview1BB,
+}
+const TRUST_OVERVIEW2 = {
+  faces: TrustOverview2Face,
+  blurryFaces: TrustOverview2Blur,
+  blackBoxes: TrustOverview2BB,
+}
 
 const defaultPrompt = "Press ENTER to continue."
 
@@ -22,7 +46,7 @@ const instructions = [[
     timeout: 10000,
     prompt: "Press ENTER to continue on to the instructions."
   }, {
-    fullPageImage: ExperimentOverview,
+    fullPageImage: ({stimRandomizer}) => (EXPERIMENT_OVERVIEW[stimRandomizer.name]),
     timeout: 20000,
     prompt: defaultPrompt,
   }, {
@@ -78,7 +102,7 @@ const instructions = [[
       {
         textItems: [
           "Importantly, as Player One, you will identify which student you ",
-          ({negativeLanguage}) =>
+          ({ state: { negativeLanguage } }) =>
             `${ negativeLanguage ? 'dis' : '' }trust and then send ${negativeLanguage ? 'the other' : 'that'}  student your money.`
         ],
       },
@@ -87,7 +111,7 @@ const instructions = [[
     timeout: 15000,
     prompt: defaultPrompt,
   }, {
-    fullPageImage: ({negativeLanguage}) => negativeLanguage ? DistrustOverview1 : TrustOverview1,
+    fullPageImage: ({stimRandomizer}) => (TRUST_OVERVIEW1[stimRandomizer.name]),
     timeout: 20000,
     prompt: defaultPrompt,
   }, {
@@ -96,7 +120,7 @@ const instructions = [[
       "When the letters disappear, the photos will remain on the screen for the decision task.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
-    images: [DemoA],
+    images: [({stimRandomizer}) => (stimRandomizer.name === 'blackBoxes' ? DemoABB : DemoA)],
     timeout: 5000,
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
@@ -105,22 +129,22 @@ const instructions = [[
       "To begin, you will be given $1.00. You will then choose who you want to send your $1.00 to. The participant you trust will become the Player Two. Your money will then be multiplied by four and placed in the Player Two’s account.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
-    images: [DemoB],
+    images: [({stimRandomizer}) => (stimRandomizer.name === 'blackBoxes' ? DemoBBB : DemoB)],
     timeout: 15000,
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [
       {textItems: [
         "In this example, Player One",
-        ({negativeLanguage}) => ` is asked, "Which CU Boulder student do you ${negativeLanguage ? "dis" : ""}trust?", and has chosen to ${negativeLanguage ? "dis" : ""}trust the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
+        ({ state: { negativeLanguage } }) => ` is asked, "Which CU Boulder student do you ${negativeLanguage ? "dis" : ""}trust?", and has chosen to ${negativeLanguage ? "dis" : ""}trust the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
       ]},
       {textItems: [
-        ({negativeLanguage}) => `So, if you select the person on the ${negativeLanguage ? "RIGHT" : "RIGHT"} then the person on the ${negativeLanguage ? "LEFT" : "RIGHT"} will become Player Two, and if you select the person on the ${negativeLanguage ? "LEFT" : "LEFT"} then the person on the ${negativeLanguage ? "RIGHT" : "LEFT"} will become Player Two.`,
+        ({ state: { negativeLanguage } }) => `So, if you select the person on the ${negativeLanguage ? "RIGHT" : "RIGHT"} then the person on the ${negativeLanguage ? "LEFT" : "RIGHT"} will become Player Two, and if you select the person on the ${negativeLanguage ? "LEFT" : "LEFT"} then the person on the ${negativeLanguage ? "RIGHT" : "LEFT"} will become Player Two.`,
       ]},
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     timeout: 15000,
-    images: [({negativeLanguage}) => (negativeLanguage ? DemoCNegative : DemoCPositive)],
+    images: [({stimRandomizer}) => (stimRandomizer.name === 'blackBoxes' ? DemoCBB : DemoC)],
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [
@@ -132,7 +156,7 @@ const instructions = [[
     timeout: 20000,
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
-    fullPageImage: ({negativeLanguage}) => negativeLanguage ? DistrustOverview2 : TrustOverview2,
+    fullPageImage: ({stimRandomizer}) => (TRUST_OVERVIEW2[stimRandomizer.name]),
     timeout: 20000,
     prompt: defaultPrompt,
   }, {

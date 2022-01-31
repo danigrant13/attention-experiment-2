@@ -24,7 +24,7 @@ const reducer = (state, action) => {
   }
 };
 
-const PracticeLetters = ({ history, match: { url } }) => {
+const PracticeLetters = ({ history }) => {
   const [currentState, setCurrentState] = React.useState("direction");
   const stepTo = (to) => () => {
     setCurrentState(to);

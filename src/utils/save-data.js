@@ -45,10 +45,10 @@ const trustJSONtoRows = pipe(
 const manipulationCheckRow = ({question1, question2, question3, question4}) =>
   [question1, question2, question3, question4].map(man => removeCommas(man)).join(',')
 
-const saveToCsv = ({ negativeLanguage, trustData, manipulationCheck, participantNumber }) =>
+const saveToCsv = ({ stimType, trustData, manipulationCheck, participantNumber }) =>
   `${headers}\n` +
   `${participantNumber || "missing"},` +
-  `${negativeLanguage ? "notTrust" : "trust"},` +
+  `${stimType},` +
   `${trustJSONtoRows(trustData)},` +
     `${manipulationCheckRow(manipulationCheck)}`;
 

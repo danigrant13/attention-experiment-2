@@ -10,9 +10,12 @@ import LetterStim from "./LetterStim";
 import TrustQuestion from "./TrustQuestion";
 
 const PictureStimsPage = ({history, match: { params: { page } } }) => {
-  const pageIndex = parseInt(page);
-  const currentPage = PAGES[pageIndex];
+  const { dispatch, pages, state: { negativeLanguage } } = useContext(DataContext);
 
+  const pageIndex = parseInt(page);
+  const currentPage = pages[pageIndex];
+
+  console.log(pages);
   const [trustState, trustDispatch] = React.useReducer(reducer, genInitialValues(currentPage));
   const [currentState, setCurrentState] = React.useState("direction");
   const stepTo = (to) => () => {
@@ -32,54 +35,42 @@ const PictureStimsPage = ({history, match: { params: { page } } }) => {
       )
     case "trust":
       return (
-        <DataContext.Consumer>
-          {({state: {negativeLanguage}}) => (
-            <TrustQuestion
-              currentPage={currentPage}
-              negativeLanguage={negativeLanguage}
-              handleSubmit={({choice, selectionTime}) => {
-                trustDispatch(setSelection(choice, selectionTime));
-                stepTo('exit-questions')();
-              }}
-            />
-          )}
-        </DataContext.Consumer>
+        <TrustQuestion
+          currentPage={currentPage}
+          negativeLanguage={negativeLanguage}
+          handleSubmit={({choice, selectionTime}) => {
+            trustDispatch(setSelection(choice, selectionTime));
+            stepTo('exit-questions')();
+          }}
+        />
       );
     case "exit-questions":
       return (
-        <DataContext.Consumer>
-          {({dispatch}) => (
-            <ExitQuestions
-              dispatch={trustDispatch}
-              currentPage={currentPage}
-              handleSubmit={() => {
-                dispatch(setTrustRow(trustState));
-                stepTo('feedback')()
-              }}
-            />
-          )}
-        </DataContext.Consumer>
+        <ExitQuestions
+          dispatch={trustDispatch}
+          currentPage={currentPage}
+          handleSubmit={() => {
+            dispatch(setTrustRow(trustState));
+            stepTo('feedback')()
+          }}
+        />
       );
     case "feedback":
       return (
-        <DataContext.Consumer>
-          {({ pages }) => (
-            <Feedback
-              currentPage={currentPage}
-              page={pageIndex}
-              trustState={trustState}
-              handleSubmit={() => {
-                if (pageIndex === pages.length - 1) {
-                  history.replace('/thank-you');
-                } else if (pageIndex === 2) {
-                  history.replace('/experiment-intro');
-                } else {
-                  history.replace(`/trust-games/${pageIndex + 1}`);
-                }
-              }}
-            />
-          )}
-        </DataContext.Consumer>
+        <Feedback
+          currentPage={currentPage}
+          page={pageIndex}
+          trustState={trustState}
+          handleSubmit={() => {
+            if (pageIndex === pages.length - 1) {
+              history.replace('/thank-you');
+            } else if (pageIndex === 2) {
+              history.replace('/experiment-intro');
+            } else {
+              history.replace(`/trust-games/${pageIndex + 1}`);
+            }
+          }}
+        />
       );
     default:
       return <div />;

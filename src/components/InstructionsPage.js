@@ -93,9 +93,9 @@ const InstructionsPage = ({history, match: { params: {group, page} }}) => {
 
     return (
       <DataContext.Consumer>
-        {({ state }) => (
+        {context => (
           <Instructions prompt={prompt}>
-            <FullPageImage alt="Image" src={isFunction(image) ? image(state) : image} />
+            <FullPageImage alt="Image" src={isFunction(image) ? image(context) : image} />
           </Instructions>
         )}
       </DataContext.Consumer>
@@ -104,13 +104,13 @@ const InstructionsPage = ({history, match: { params: {group, page} }}) => {
 
   return (
     <DataContext.Consumer>
-      {({ state }) => (
+      {(context) => (
         <Instructions prompt={prompt}>
-          {currentPage.items.map((instruction) => <P>{renderTextInstruction(instruction, state)}</P>)}
+          {currentPage.items.map((instruction) => <P>{renderTextInstruction(instruction, context)}</P>)}
           {isPresent(currentPage.images) && (
             <ImagesWrapper>
               {currentPage.images.map((image, i) =>
-                <Image key={i} alt={`img ${i}`} src={typeof image == 'function' ? image(state) : image} />)}
+                <Image key={i} alt={`img ${i}`} src={typeof image == 'function' ? image(context) : image} />)}
             </ImagesWrapper>
           )}
         </Instructions>

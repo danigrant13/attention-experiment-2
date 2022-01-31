@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
 import { shuffle } from "../../utils/random";
-
-import {practiceImages} from "../../data/imageStims";
 
 import {DataContext} from "../../App";
 import DisplayDirection from "../PictureStimsPage/DisplayDirection";
@@ -20,6 +18,7 @@ const letters = shuffle([
 ]);
 
 const PracticeLetters = ({ history }) => {
+  const { state: { negativeLanguage }, stimRandomizer } = useContext(DataContext);
   const [trustAnswer, setTrustAnswer] = React.useState(null);
   const [currentState, setCurrentState] = React.useState("direction");
   const [currentRound, setCurrentRound] = React.useState(1);
@@ -27,7 +26,7 @@ const PracticeLetters = ({ history }) => {
     setCurrentState(to);
   };
 
-  const roundIndex = currentRound - 1;
+  const currentImages = stimRandomizer.practiceAt(currentRound - 1)
 
   switch(currentState) {
     case "direction":
@@ -36,7 +35,7 @@ const PracticeLetters = ({ history }) => {
     case "letters":
       return (
         <LetterStim
-          currentPage={{images: practiceImages[roundIndex], letters}}
+          currentPage={{images: currentImages, letters}}
           letters={letters}
           letterPosition=">"
           onStep={stepTo("trust-question")}
@@ -44,24 +43,20 @@ const PracticeLetters = ({ history }) => {
       );
     case 'trust-question':
       return (
-        <DataContext.Consumer>
-          {({state: {negativeLanguage}}) => (
-            <TrustQuestion
-              currentPage={{images: practiceImages[roundIndex], letters}}
-              negativeLanguage={negativeLanguage}
-              handleSubmit={({choice}) => {
-                setTrustAnswer(choice);
-                stepTo('show-choice')();
-              }}
-            />
-          )}
-        </DataContext.Consumer>
+        <TrustQuestion
+          currentPage={{images: currentImages, letters}}
+          negativeLanguage={negativeLanguage}
+          handleSubmit={({choice}) => {
+            setTrustAnswer(choice);
+            stepTo('show-choice')();
+          }}
+        />
       );
     case 'show-choice':
       return (
         <ShowChoice
-          images={practiceImages[roundIndex]}
-          isLeft={practiceImages[roundIndex][0] === trustAnswer}
+          images={currentImages}
+          isLeft={currentImages[0] === trustAnswer}
           onStep={stepTo('show-player-two')}
         />
       );
@@ -69,8 +64,8 @@ const PracticeLetters = ({ history }) => {
     case 'show-player-two':
       return (
         <ShowPlayerTwo
-          images={practiceImages[roundIndex]}
-          isLeft={practiceImages[roundIndex][0] === trustAnswer}
+          images={currentImages}
+          isLeft={currentImages[0] === trustAnswer}
           round={currentRound}
           onStep={() => {
             if (currentRound === 1) {

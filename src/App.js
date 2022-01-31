@@ -3,8 +3,8 @@ import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
 import {pathOr} from "ramda";
 
-import { coinFlip, sampleWithoutReplacement, shuffle } from "../../utils/random";
-import imageStims from 'data/imageStims'
+import { coinFlip, sampleWithoutReplacement, shuffle } from "./utils/random";
+import imageStims from './data/imageStims'
 import ExperimentIntro from "./components/ExperimentIntro";
 import WelcomePage from "./components/Welcome";
 import InstructionsPage from "./components/InstructionsPage";
@@ -79,6 +79,7 @@ const reducer = (state, action) => {
 
 const initialValues = {
   negativeLanguage: false,
+  stimType: IMAGE_STIMS.name,
   trustData: [],
   manipulationCheck: {},
 };
@@ -102,7 +103,7 @@ const App = () => {
   const [state, dispatch] = React.useReducer(reducer, initialValues);
 
   return (
-    <DataContext.Provider value={{ state, dispatch, pages: PAGES }}>
+    <DataContext.Provider value={{ state, dispatch, pages: PAGES, stimRandomizer: IMAGE_STIMS }}>
       <GlobalStyle />
       <Switch>
         <Route exact path="/" component={ParticipantNumberPage} />
