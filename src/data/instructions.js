@@ -40,7 +40,9 @@ const instructions = [[
   {
     items: [
       `The purpose of this study is to examine how people make social decisions while engaging in other cognitive tasks. There are three phases in this study; You are participating in the second phase.`,
-      `Recently, during phase one, CU Boulder students came into the lab and we took their photos. You will see their photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
+      `Recently, during phase one, CU Boulder students came into the lab and we took their photos. You will see their `,
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blurryFaces" ? "blurred " : "")]},
+      `photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
       `On the next slide there will be a diagram outlining the phases of this study.`
     ],
     timeout: 10000,
@@ -53,7 +55,8 @@ const instructions = [[
     items: [
       `Today you will take part in two tasks at the same time.`,
       `(1) In the first task you will be searching for a single letter within a sequence of many letters.`,
-      `(2) In the second you will take part in a decision task. You will be randomly paired with two CU Boulder students from phase one and then be asked to choose which to give hypothetical sums of money to (e.g., $1).`,
+      `(2) In the second task you will take part in a decision task. `,
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? `You will be presented with two different Bayesian based machine learning algorithms, which we will call “black boxes”. The black boxes represent algorithms based on data from previous students who took part in this decision task. In this task, you will choose between these two black boxes to give hypothetical sums of money to (e.g., $1).` : `You will be randomly paired with two CU Boulder students from phase one and then be asked to choose which to give hypothetical sums of money to (e.g., $1).`)]},
     ],
     timeout: 10000,
     prompt: defaultPrompt,
@@ -98,12 +101,12 @@ const instructions = [[
 ], [{
     items: [
       "In the decision task there are two roles: Player One and Player Two. You will be Player One, and you will get to choose who becomes Player Two from the two CU Boulder students you are paired with.",
-      "You will be given a small sum of money. You will choose which CU Boulder student you trust more. Then you will give them money. That student will become Player Two. Once you are finished with you turn, Player Two will later decide how much of the mony, if any, they would like to give back to you.",
+      "You will be given a small sum of money. You will choose which CU Boulder student you want to join you in the decision task. Then you will send them your money. That student will become Player Two. Once you are finished with you turn, Player Two will later decide how much of the money, if any, they would like to give back to you.",
       {
         textItems: [
           "Importantly, as Player One, you will identify which student you ",
           ({ state: { negativeLanguage } }) =>
-            `${ negativeLanguage ? 'dis' : '' }trust and then send ${negativeLanguage ? 'the other' : 'that'}  student your money.`
+            `${ negativeLanguage ? 'dis' : '' }select and then send ${negativeLanguage ? 'the other' : 'that'}  student your money.`
         ],
       },
       "On the next screen, there will be a diagram outlining the steps for the decision task."
@@ -116,7 +119,9 @@ const instructions = [[
     prompt: defaultPrompt,
   }, {
     items: [
-      "While you are doing the search task, two photographs of previous CU Boulder students from phase one will also appear.",
+      "While you are doing the search task, two photographs of previous CU Boulder students ",
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blurryFaces" ? "with blurred faces " : "")]},
+      "from phase one will also appear.",
       "When the letters disappear, the photos will remain on the screen for the decision task.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
@@ -126,7 +131,7 @@ const instructions = [[
   }, {
     items: [
       "Everyone in phase two of this study will be Player One.",
-      "To begin, you will be given $1.00. You will then choose who you want to send your $1.00 to. The participant you trust will become the Player Two. Your money will then be multiplied by four and placed in the Player Two’s account.",
+      "To begin, you will be given $1.00. You will then choose who you want to send your $1.00 to. The participant you select will become the Player Two. Your money will then be multiplied by four and placed in the Player Two’s account.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     images: [({stimRandomizer}) => (stimRandomizer.name === 'blackBoxes' ? DemoBBB : DemoB)],
@@ -136,7 +141,7 @@ const instructions = [[
     items: [
       {textItems: [
         "In this example, Player One",
-        ({ state: { negativeLanguage } }) => ` is asked, "Which CU Boulder student do you ${negativeLanguage ? "dis" : ""}trust?", and has chosen to ${negativeLanguage ? "dis" : ""}trust the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
+        ({ state: { negativeLanguage } }) => ` is asked, "Which CU Boulder student do you ${negativeLanguage ? "" : ""}select?", and has selected ${negativeLanguage ? "dis" : ""}the red participant. As a result, the ${negativeLanguage ? 'blue' : 'red'} participant is assigned to be Player Two and $4.00 is placed in their account.`
       ]},
       {textItems: [
         ({ state: { negativeLanguage } }) => `So, if you select the person on the ${negativeLanguage ? "RIGHT" : "RIGHT"} then the person on the ${negativeLanguage ? "LEFT" : "RIGHT"} will become Player Two, and if you select the person on the ${negativeLanguage ? "LEFT" : "LEFT"} then the person on the ${negativeLanguage ? "RIGHT" : "LEFT"} will become Player Two.`,

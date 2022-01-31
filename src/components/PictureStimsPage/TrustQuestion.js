@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 
+import { DataContext } from "../../App";
 import useKeyPress from "../../hooks/useKeyPress";
 import {elapsedTime} from "../../utils/date";
 
@@ -11,6 +12,7 @@ const leftKey = "y";
 const rightKey = "b";
 
 const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
+  const { stimRandomizer } = useContext(DataContext);
   const startRef = React.useRef(new Date());
   const [dollarAmounts, setDollarAmounts] = React.useState([zeroDollars, "$1.00", zeroDollars])
   const [{ choiceMade, choseLeft }, setChoiceMade] = React.useState({ choiceMade: false, choseLeft: false });
@@ -39,11 +41,11 @@ const TrustQuestion = ({ currentPage, negativeLanguage, handleSubmit }) => {
       showLeft={choiceMade ? choseLeft : true}
       showRight={choiceMade ? !choseLeft : true}
       prompt={[
-        "Now you are Player One and have been given $1.00.",
+        stimRandomizer.name === 'blackBoxes' ? "Now you have been given $1.00."  : "Now you are Player One and have been given $1.00.",
         <br />,
-        `Which CU Boulder student do you ${negativeLanguage ? 'dis' : ''}trust?`,
+        stimRandomizer.name === 'blackBoxes' ? "Which black box do you select?"  : "Which CU Boulder student do you select?",
         <br />,
-        "Use the yellow 'y' to choose the left participant and the yellow 'b' to choose the right participant."
+        stimRandomizer.name === 'blackBoxes' ? "Use the yellow 'Y' to choose the left black box and the yellow 'B' to choose the right black box."  : "Use the yellow 'Y' to choose the left participant and the yellow 'B' to choose the right participant.",
       ]}
     />
   )

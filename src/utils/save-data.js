@@ -22,7 +22,7 @@ const headers = [
     flatten,
     join(',')
   )(),
-  "Manipulation Q1, Manipulation Q2, Manipulation Q3, Manipulation Q4"
+  "Manipulation Q0, Manipulation Q1, Manipulation Q2, Manipulation Q3, Manipulation Q4"
 ].join(',')
 
 const trustItemToRow = trustItem => ([
@@ -42,8 +42,8 @@ const trustJSONtoRows = pipe(
   join(',')
 )
 
-const manipulationCheckRow = ({question1, question2, question3, question4}) =>
-  [question1, question2, question3, question4].map(man => removeCommas(man)).join(',')
+const manipulationCheckRow = ({question0, question1, question2, question3, question4}) =>
+  [question0, question1, question2, question3, question4].map(man => removeCommas(man)).join(',')
 
 const saveToCsv = ({ stimType, trustData, manipulationCheck, participantNumber }) =>
   `${headers}\n` +

@@ -21,7 +21,7 @@ const ShowChoice = ({ images, isLeft, onStep }) => {
       ]}
       images={images}
       prompt={[
-        "This is the participant you chose to trust. When they come back to the lab later they will decide whether to give none, some, or all the money you trusted them with back to you.",
+        "This is the participant you selected. When they come back to the lab later they will decide whether to give none, some, or all the money you gave them back to you.",
         <br />,
         "Press ENTER to continue."
       ]}

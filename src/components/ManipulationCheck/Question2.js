@@ -1,11 +1,13 @@
-import React from "react";
-
+import React, { useContext } from "react";
 import Page from "../ui/Page";
+
 import {P, Select} from "./ui";
+import { DataContext } from "../../App";
 
 import { isPresent } from "../../utils/presence";
 
 const Question2 = ({ onComplete }) => {
+  const { stimRandomizer } = useContext(DataContext);
   const [answer, setAnswer] = React.useState(null);
 
   React.useEffect(() => {
@@ -17,7 +19,9 @@ const Question2 = ({ onComplete }) => {
   return (
     <Page>
       <P>
-        What is the highest amount of money that Player Two can give back to you?
+        What is the highest amount of money that&nbsp;
+        {stimRandomizer.name === 'blackBoxes' ? 'a black box '  : 'Player Two '}
+        can give back to you?
       </P>
       <Select onChange={e => setAnswer(e.target.value)}>
         <option>Select an option</option>

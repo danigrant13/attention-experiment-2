@@ -23,7 +23,6 @@ const ShowPlayerTwo = ({ images, isLeft, onStep, round }) => {
       images={images}
       prompt={[
         `For example, imagine that when this Player Two came back to the lab, they chose to give you ${round === 1 ? zeroDollars : twoDollars} back.`,
-        `They are ${round === 1 ? 'not' : ''} trustworthy.`,
         <br />,
         "Press ENTER to continue."
       ]}

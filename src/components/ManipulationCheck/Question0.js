@@ -6,7 +6,7 @@ import { isPresent } from "../../utils/presence";
 
 import {P, Select} from "./ui";
 
-const Question1 = ({ onComplete }) => {
+const Question0 = ({ onComplete }) => {
   const { stimRandomizer } = useContext(DataContext);
   const [answer, setAnswer] = React.useState(null);
 
@@ -19,20 +19,19 @@ const Question1 = ({ onComplete }) => {
   return (
     <Page>
       <P>
-        After you have selected&nbsp;
-        {stimRandomizer.name === 'blackBoxes' ? 'one of the black boxes '  : 'Player Two '}
-        to give your $1.00, how much will this amount be multiplied by before being given&nbsp;
-        {stimRandomizer.name === 'blackBoxes' ? 'to the black box?'  : 'to Player Two?'}
-
+        What do you think the likelihood is of a&nbsp;
+        {stimRandomizer.name === 'blackBoxes' ? 'black boxe sending '  : 'Player Two giving '}
+        any money back?
       </P>
       <Select onChange={e => setAnswer(e.target.value)}>
         <option>Select an option</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
+        <option value="Extremely unlikely">1</option>
+        <option value="Moderately unlikely">2</option>
+        <option value="Somewhat unlikely">3</option>
+        <option value="Neither likely nor unlikely">4</option>
+        <option value="Somewhat likely">5</option>
+        <option value="Moderately likely">6</option>
+        <option value="Extremely likely">7</option>
       </Select>
     </Page>
   );

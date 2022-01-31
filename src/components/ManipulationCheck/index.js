@@ -5,6 +5,7 @@ import {DataContext, setManipulationCheck} from "../../App";
 import usePrevious from "../../hooks/usePrevious";
 
 import Feedback from "./Feedback";
+import Question0 from "./Question0";
 import Question1 from "./Question1";
 import Question2 from "./Question2";
 import Question3 from "./Question3";
@@ -18,7 +19,7 @@ const correctAnswers = negativeLanguage => ({
 });
 
 const ManipulationCheck = ({ history }) => {
-  const [currentState, setCurrentState] = React.useState('question1');
+  const [currentState, setCurrentState] = React.useState('question0');
 
   const lastQuestion = usePrevious(currentState);
 
@@ -31,6 +32,15 @@ const ManipulationCheck = ({ history }) => {
   }
 
   switch (currentState) {
+    case 'question0':
+      return (
+        <Question0
+          onComplete={(answer) => {
+            setAnswer(answer, 'question0');
+            setCurrentState('question1')
+          }}
+        />
+      );
     case 'question1':
       return (
         <Question1
