@@ -39,11 +39,13 @@ const defaultPrompt = "Press ENTER to continue."
 const instructions = [[
   {
     items: [
-      `The purpose of this study is to examine how people make social decisions while engaging in other cognitive tasks. There are three phases in this study; You are participating in the second phase.`,
-      `Recently, during phase one, CU Boulder students came into the lab and we took their photos. You will see their `,
+      `The purpose of this study is to examine how people make social decisions while engaging in other cognitive tasks. `,
+      
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "" : `There are three phases in this study; You are participating in the second phase. `)]},
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "" : `Recently, during phase one, CU Boulder students came into the lab and we took their photos. You will see their `)]},
       {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blurryFaces" ? "blurred " : "")]},
-      `photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`,
-      `On the next slide there will be a diagram outlining the phases of this study.`
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "" : `photos during some part of today’s study. After you finish with the second phase of the study today, those CU Boulder students from phase one will return to take part in phase three.`)]},
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "" : `On the next slide there will be a diagram outlining the phases of this study.`)]},
     ],
     timeout: 10000,
     prompt: "Press ENTER to continue on to the instructions."
@@ -55,8 +57,15 @@ const instructions = [[
     items: [
       `Today you will take part in two tasks at the same time.`,
       `(1) In the first task you will be searching for a single letter within a sequence of many letters.`,
-      `(2) In the second task you will take part in a decision task. `,
-      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? `You will be presented with two different Bayesian based machine learning algorithms, which we will call “black boxes”. The black boxes represent algorithms based on data from previous students who took part in this decision task. In this task, you will choose between these two black boxes to give hypothetical sums of money to (e.g., $1).` : `You will be randomly paired with two CU Boulder students from phase one and then be asked to choose which to give hypothetical sums of money to (e.g., $1).`)]},
+      `(2) In the second task you will take part in a decision task. You will be `,
+
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? `presented with two 
+        different Bayesian based machine learning algorithms, which we will call “black boxes”. The black boxes represent 
+        algorithms based on data from previous students who took part in this decision task. In this task, you will choose 
+        between these two black boxes ` : `randomly paired with two CU Boulder 
+        students from phase one and then be asked to choose which `)]},
+
+        `to give hypothetical sums of money to (e.g., $1).`,
     ],
     timeout: 10000,
     prompt: defaultPrompt,
@@ -100,14 +109,13 @@ const instructions = [[
   }
 ], [{
     items: [
-      "In the decision task there are two roles: Player One and Player Two. You will be Player One, and you will get to choose who becomes Player Two from the two CU Boulder students you are paired with.",
-      "You will be given a small sum of money. You will choose which CU Boulder student you want to join you in the decision task. Then you will send them your money. That student will become Player Two. Once you are finished with you turn, Player Two will later decide how much of the money, if any, they would like to give back to you.",
       {
         textItems: [
-          "Importantly, as Player One, you will identify which student you ",
-          ({ state: { negativeLanguage } }) =>
-            `${ negativeLanguage ? 'dis' : '' }select and then send ${negativeLanguage ? 'the other' : 'that'}  student your money.`
-        ],
+          ({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? `In the decision task there will be two black boxes to choose from. The black boxes represent algorithms based on data from previous students who took part in this decision task.` : `In the decision task there are two roles: Player One and Player Two. You will be Player One, and you will get to choose who becomes Player Two from the two CU Boulder students you are paired with.`),
+          ({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? `Each of the black boxes performs a different a mathematical function that converts money inputted into money to be outputted back to money. The money outputted may be more or less than the money you put in, but it will never be a negative number, so the lowest outcome possible is to get 0 (zero).` : `You will be given a small sum of money. You will choose which CU Boulder student you want to join you in the decision task. Then you will send them your money. That student will become Player Two. Once you are finished with you turn, Player Two will later decide how much of the money, if any, they would like to give back to you.`),
+          ({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? `In the decision task, you will be given a small sum of money. You will select which black box you want to use for the decision task. Then you will send the black box your money. The black boxes algorithm will dictate how much of the money, if any, will be given back to you.` : ``),
+          ({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? `Importantly, you will identify which black box you select and then send that black box your money.` : `Importantly, as Player One, you will identify which student you select and then send that student your money.`),
+        ]
       },
       "On the next screen, there will be a diagram outlining the steps for the decision task."
     ],
@@ -119,10 +127,14 @@ const instructions = [[
     prompt: defaultPrompt,
   }, {
     items: [
-      "While you are doing the search task, two photographs of previous CU Boulder students ",
+      "While you are doing the search task, ",
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "the two black boxes" : "two photographs of previous CU Boulder students ")]},
       {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blurryFaces" ? "with blurred faces " : "")]},
-      "from phase one will also appear.",
-      "When the letters disappear, the photos will remain on the screen for the decision task.",
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "" : "from phase one ")]},
+      "will also appear.",
+      "When the letters disappear, ",
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "the black boxes " : "the photos ")]},
+      "will remain on the screen for the decision task.",
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     images: [({stimRandomizer}) => (stimRandomizer.name === 'blackBoxes' ? DemoABB : DemoA)],
@@ -153,9 +165,9 @@ const instructions = [[
     prompt: "Press ENTER to continue with the decision task description.",
   }, {
     items: [
-      "Player Two Role:",
-      "Player Two will return to the lab in the next few days to take part in the third phase of the study. They will be able to see everything you saw (including their own photo, the other participant’s photo, and the choice you made).",
-      "Player Two will have an opportunity to give back as little as $0.00 and as much as $4.00 or any amount in between to you. The money they return will NOT be multiplied. It will simply be placed into your account.",
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "Black Box Mathematical Algorithm:" : "Player Two Role:")]},
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "The black box that is selected will perform its mathematical function that converts money inputted into money to be outputted." : "Player Two will return to the lab in the next few days to take part in the third phase of the study. They will be able to see everything you saw (including their own photo, the other participant’s photo, and the choice you made).")]},
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "The black box can give back as little as $0.00 and as much as $4.00 or any amount in between. The money returned will NOT be multiplied. It will simply be placed into your account." : "Player Two will have an opportunity to give back as little as $0.00 and as much as $4.00 or any amount in between to you. The money they return will NOT be multiplied. It will simply be placed into your account.")]},
       "On the next screen, there will be a diagram reviewing the steps for the decision task.",
     ],
     timeout: 20000,
