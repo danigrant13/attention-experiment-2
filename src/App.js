@@ -51,7 +51,7 @@ const randomLetters = () => {
 };
 
 // GET a random image stim from faces, blurryFaces, or blackBoxes
-const IMAGE_STIMS = imageStims[2];//Math.floor(Math.random() * 3)]; #0 = clear faces, 1 = blur faces, 2 = black boxes
+const IMAGE_STIMS = imageStims[Math.floor(Math.random() * 3)]; 
 
 const PAGES = [];
 for (let i = 0; i < 28; i++) {
