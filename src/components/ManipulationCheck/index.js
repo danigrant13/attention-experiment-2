@@ -11,12 +11,12 @@ import Question2 from "./Question2";
 import Question3 from "./Question3";
 import Question4 from "./Question4";
 
-const correctAnswers = negativeLanguage => ({
+const correctAnswers = {
   question1: "4",
   question2: "$4.00",
   question3: "$0.00",
-  question4: negativeLanguage ? "blue" : "red",
-});
+  question4: "right",
+};
 
 const ManipulationCheck = ({ history }) => {
   const [currentState, setCurrentState] = React.useState('question0');
@@ -81,11 +81,11 @@ const ManipulationCheck = ({ history }) => {
     case 'feedback':
       return (
         <DataContext.Consumer>
-          {({ dispatch, state: {negativeLanguage} }) => (
+          {({ dispatch, stimRandomizer }) => (
             <Feedback
               question={lastQuestion}
               answer={answers[lastQuestion]}
-              correctAnswer={correctAnswers(negativeLanguage)[lastQuestion]}
+              correctAnswer={correctAnswers[lastQuestion]}
               onStep={() => {
                 switch(lastQuestion) {
                   case 'question1':

@@ -107,7 +107,7 @@ const instructions = [[
       },
       {
         textItems: [
-          ({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "Each of the black boxes performs a different a mathematical function that converts money inputted into money to be outputted back to money. The money outputted may be more or less than the money you put in, but it will never be a negative number, so the lowest outcome possible is to get 0 (zero)." : `You will be given a small sum of money. You will choose which CU Boulder student you want to join you in the decision task. Then you will send them your money. That student will become Player Two. Once you are finished with you turn, Player Two will later decide how much of the money, if any, they would like to give back to you.`),
+          ({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "Each of the black boxes performs a different a mathematical function that converts money you input into money outputted back to you. The money outputted may be more or less than the money you put in, but it will never be a negative number, so the lowest outcome possible is to get 0 (zero)." : `You will be given a small sum of money. You will choose which CU Boulder student you want to join you in the decision task. Then you will send them your money. That student will become Player Two. Once you are finished with you turn, Player Two will later decide how much of the money, if any, they would like to give back to you.`),
           ]
       },
       {
@@ -150,7 +150,7 @@ const instructions = [[
   }, {
     items: [
         {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "In this example, the participant is asked “Which black box do you select?”, and has selected to select the right (diagonal lined) black box. As a result, the right black box has $4.00 transferred to it." : "In this example, Player One is asked, “Which CU Boulder student do you select?”, and has selected the red participant. As a result, the participant is assigned to be Player Two and $4.00 is placed in their account.")]},
-        {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "So, if you select the black box on the RIGHT then the black box on the RIGHT will be transferred your money, and if you select the black box on the LEFT then the left black box will be transferred your money." : "So, if you select the person on the RIGHT then the person on the RIGHT will become Player Two, and if you select the person on the LEFT then the left person will become Player Two.")]},
+        {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "So, if you select the black box on the RIGHT then the black box on the RIGHT will be transferred your money, and if you select the black box on the LEFT then the LEFT black box will be transferred your money." : "So, if you select the person on the RIGHT then the person on the RIGHT will become Player Two, and if you select the person on the LEFT then the left person will become Player Two.")]},
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     timeout: 15000,
@@ -174,14 +174,12 @@ const instructions = [[
     prompt: "Press ENTER to begin the first example trial."
   }
 ], [{
-    items: [
-      "Now that you are familiar with the two tasks, you will participate in three practice trials that will get you familiar with doing the tasks together. Then, you will take part in 25 real trials."
-    ],
-    prompt: defaultPrompt
   }, {
     items: [
-      "Since there will be 25 trials, you will choose 25 other participants to become Player Two. Those 25 Player Twos will return to the lab for phase three and take part in their turn of the decision task.",
-      "Along with you, many other participants will take on the Player One roles in phase two and will be making decisions about the same previous participants. So, when the 25 Player Twos you trusted return to the lab, they will likely be taking part in many Player Two roles in the decision task."
+      {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? 
+      "Now that you are familiar with the two tasks, you will participate in three practice trials that will get you familiar with doing the tasks together. Then, you will take part in 25 real trials.": "Now that you are familiar with the two tasks, you will participate in three practice trials that will get you familiar with doing the tasks together. Then, you will take part in 25 real trials. Since there will be 25 trials, you will choose 25 other participants to become Player Two. Those 25 Player Twos will return to the lab for phase three and take part in their turn of the decision task. Along with you, many other participants will take on the Player One roles in phase two and will be making decisions about the same previous participants. So, when the 25 Player Twos you trusted return to the lab, they will likely be taking part in many Player Two roles in the decision task."
+      )]},
+
     ],
     prompt: defaultPrompt
   }, {

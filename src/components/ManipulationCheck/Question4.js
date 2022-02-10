@@ -34,8 +34,8 @@ const Question4 = ({ onComplete }) => {
       </P>
       <Select onChange={e => setAnswer(e.target.value)}>
         <option>Select an option</option>
-        <option value="red">{isBoxes ? 'the right diagonal lines box' : 'the red student'}</option>
-        <option value="blue">{isBoxes ? 'the left grid box' : 'the blue student'}</option>
+        <option value="right">{isBoxes ? 'the right diagonal line box' : 'the red student'}</option>
+        <option value="left">{isBoxes ? 'the left grid box' : 'the blue student'}</option>
       </Select>
     </Page>
   );

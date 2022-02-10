@@ -22,10 +22,14 @@ const ShowPlayerTwo = ({ images, isLeft, onStep, round }) => {
         isLeft ? zeroDollars : fourDollars
       ]}
       images={images}
-      prompt={[
-        `For example, imagine that `,
-        stimRandomizer.name === 'blackBoxes' ? 'this black box’s mathematical algorithm dictated you be given '  : 'when this Player Two came back to the lab, they chose to give you '
-        ` ${round === 1 ? zeroDollars : twoDollars} back.`,
+      prompt={[ 
+        [
+          "For example, imagine that",
+          stimRandomizer.name === 'blackBoxes' ?
+            'this black box’s mathematical algorithm dictated you be given '  :
+            'when this Player Two came back to the lab, they chose to give you ',
+          `${round === 1 ? zeroDollars : twoDollars} back.`
+        ].join(" "),
         <br />,
         "Press ENTER to continue."
       ]}

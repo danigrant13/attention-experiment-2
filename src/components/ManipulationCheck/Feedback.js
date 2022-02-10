@@ -21,7 +21,7 @@ const Feedback = ({ question, answer, correctAnswer, onStep }) => {
           <P>Correct! The answer is {correctAnswer}.</P>
         </>
       ) : (
-        <P>That is incorrect! The correct answer was {correctAnswer}</P>
+        <P>That is incorrect! The correct answer was {correctAnswer}.</P>
       )}
     </Instructions>
   );

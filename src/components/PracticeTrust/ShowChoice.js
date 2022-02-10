@@ -23,7 +23,9 @@ const ShowChoice = ({ images, isLeft, onStep }) => {
       ]}
       images={images}
       prompt={[
-        {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "This is the black box you selected. The mathematical algorithm this black box uses will dictate whether to give none, some, or all the money you gave back to you." : "This is the participant you selected. When they come back to the lab later they will decide whether to give none, some, or all the money you gave them back to you.")]},
+        stimRandomizer.name === "blackBoxes" ?
+          "This is the black box you selected. The mathematical algorithm this black box uses will dictate whether to give none, some, or all the money you gave back to you." :
+          "This is the participant you selected. When they come back to the lab later they will decide whether to give none, some, or all the money you gave them back to you.",
         <br />,
         "Press ENTER to continue."
       ]}

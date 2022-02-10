@@ -20,18 +20,18 @@ const Question0 = ({ onComplete }) => {
     <Page>
       <P>
         What do you think the likelihood is of a&nbsp;
-        {stimRandomizer.name === 'blackBoxes' ? 'black boxe sending '  : 'Player Two giving '}
+        {stimRandomizer.name === 'blackBoxes' ? 'black box sending '  : 'Player Two giving '}
         any money back?
       </P>
       <Select onChange={e => setAnswer(e.target.value)}>
         <option>Select an option</option>
-        <option value="Extremely unlikely">1</option>
-        <option value="Moderately unlikely">2</option>
-        <option value="Somewhat unlikely">3</option>
-        <option value="Neither likely nor unlikely">4</option>
-        <option value="Somewhat likely">5</option>
-        <option value="Moderately likely">6</option>
-        <option value="Extremely likely">7</option>
+        <option value="1">Extremely unlikely</option>
+        <option value="2">Moderately unlikely</option>
+        <option value="3">Somewhat unlikely</option>
+        <option value="4">Neither likely nor unlikely</option>
+        <option value="5">Somewhat likely</option>
+        <option value="6">Moderately likely</option>
+        <option value="7">Extremely likely</option>
       </Select>
     </Page>
   );
