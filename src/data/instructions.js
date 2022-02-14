@@ -174,7 +174,6 @@ const instructions = [[
     prompt: "Press ENTER to begin the first example trial."
   }
 ], [{
-  }, {
     items: [
       {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? 
       "Now that you are familiar with the two tasks, you will participate in three practice trials that will get you familiar with doing the tasks together. Then, you will take part in 25 real trials.": "Now that you are familiar with the two tasks, you will participate in three practice trials that will get you familiar with doing the tasks together. Then, you will take part in 25 real trials. Since there will be 25 trials, you will choose 25 other participants to become Player Two. Those 25 Player Twos will return to the lab for phase three and take part in their turn of the decision task. Along with you, many other participants will take on the Player One roles in phase two and will be making decisions about the same previous participants. So, when the 25 Player Twos you trusted return to the lab, they will likely be taking part in many Player Two roles in the decision task."
