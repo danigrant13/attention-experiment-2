@@ -150,7 +150,7 @@ const instructions = [[
   }, {
     items: [
         {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "In this example, the participant is asked “Which black box do you select?”, and has selected to select the right (diagonal lined) black box. As a result, the right black box has $4.00 transferred to it." : "In this example, Player One is asked, “Which CU Boulder student do you select?”, and has selected the red participant. As a result, the participant is assigned to be Player Two and $4.00 is placed in their account.")]},
-        {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "So, if you select the black box on the RIGHT then the black box on the RIGHT will be transferred your money, and if you select the black box on the LEFT then the LEFT black box will be transferred your money." : "So, if you select the person on the RIGHT then the person on the RIGHT will become Player Two, and if you select the person on the LEFT then the left person will become Player Two.")]},
+        {textItems: [({stimRandomizer}) => (stimRandomizer.name === "blackBoxes" ? "So, if you select the black box on the RIGHT then the black box on the RIGHT will be transferred your money, and if you select the black box on the LEFT then the LEFT black box will be transferred your money." : "So, if you select the person on the RIGHT then the person on the RIGHT will become Player Two, and if you select the person on the LEFT then the LEFT person will become Player Two.")]},
       { textItems: [{component: "strong", text: "The basic layout of the screen will look like this:"}] }
     ],
     timeout: 15000,
